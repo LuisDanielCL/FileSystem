@@ -5,6 +5,7 @@ package filesystem;
  *
  * @author kurayami
  */
+
 public class ArchivoMaestro {
     //int ID;
     String nombre;
