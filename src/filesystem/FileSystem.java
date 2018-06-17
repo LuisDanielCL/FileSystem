@@ -182,7 +182,7 @@ public class FileSystem {
         */
     }
     
-    public void verPropiedadesDeArchivo()
+    public void verPropiedadesDeArchivo(DiscoVirtual discoVirtual)
     {
         if (discoCreado == false)
         {
@@ -191,6 +191,13 @@ public class FileSystem {
         }
         
         System.out.print("Ingrese el nombre del archivo: ");
+        String nombreArchivo = entrada.nextLine();
+        if (nombreArchivo.length() == 0)
+        {
+            System.out.println("Debe ingresar un nombre para el archivo");
+            return;
+        }
+        myFileSystem.propiedadesArchivo(nombreArchivo, discoVirtual);
         /*Archivo archivo = myFileSystem.getArchivo(nombreArchivo);
         archivo.printPropiedades();
         */
@@ -345,7 +352,7 @@ public class FileSystem {
                     break;
                     
                 case "PPT":
-                    verPropiedadesDeArchivo();
+                    verPropiedadesDeArchivo(discoVirtual);
                     break;
                 
                 case "VIEW":
