@@ -18,7 +18,7 @@ public class FileSystem {
     public static void main(String[] args) {
         LinkedList vacios = new LinkedList();
         LinkedList ocupados = new LinkedList();
-        DiscoVirtual discoVirtual = new DiscoVirtual(1,1,1);
+        DiscoVirtual discoVirtual = new DiscoVirtual("1",1,1);
         SystemaDeArchivo myFileSystem = new SystemaDeArchivo();
         System.out.print(myFileSystem.SystemaDeArchivos);
         myFileSystem.setSystemaDeArchivos(new Directorio("porno"));

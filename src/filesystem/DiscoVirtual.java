@@ -1,6 +1,7 @@
 package filesystem;
 
 import java.io.*;
+import java.util.LinkedList;
 /**
  *
  * @author kurayami
@@ -9,12 +10,17 @@ public class DiscoVirtual {
     private String nombre;
     private int tamSector;
     private int numSectores;
-    private int tamDiscoV;
+    private int tamDiscoV;    
+    LinkedList vacios = new LinkedList();
+    LinkedList ocupados = new LinkedList();
     
     public DiscoVirtual(String pNombre, int pTamSector,int pNumSectores){
         nombre = pNombre;
         tamSector = pTamSector;
         numSectores = pNumSectores ;
+        for (int i = 0; i < this.getNumSectores(); i++){
+            vacios.add(i);
+        }
     }
     
     public String getNombre() {
@@ -71,7 +77,10 @@ public class DiscoVirtual {
         }
     }
     
-    public void modificarRespaldo(){
+    public void llenarSectores(int tamano, LinkedList sectores, LinkedList vacios){
+        
+    }
+    public void vaciarSectores(){
         //proximamente
     }
 }
