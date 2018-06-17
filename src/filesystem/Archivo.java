@@ -2,7 +2,7 @@ package filesystem;
 
 import java.util.LinkedList;
 
-
+import java.util.Date;
 /**
  *
  * @author kurayami
@@ -11,19 +11,18 @@ public class Archivo extends ArchivoMaestro {
     //int id;
     LinkedList ubicacion = new LinkedList();
     int tamano;
-    //fecha, hora creacion
-    //fecha, hora ultima modificación
-    String datos;    
+    String fechaCreacion;
+    String ultimaModificacion;
+    String datos; 
+    String nombre;
     
-    /*
-    public int getId() {
-        return this.id;
+    public Archivo(String pDatos,String pNombre, String pTipo){
+        datos = pDatos;
+        nombre = pNombre;
+        tipo = pTipo;
+        
     }
-    
-    public void setId(int id){
-        this.id = id;
-    }
-    */
+
     public LinkedList getUbicacion() {
         return this.ubicacion;
     }
