@@ -60,7 +60,7 @@ public class FileSystem {
             discoVirtual = new DiscoVirtual(nombreDisco, tamanoSector, cantSectores);
             discoVirtual.setTamDiscoV();
             discoVirtual.crearRespaldo();
-            //myFileSystem = new SystemaDeArchivo(nombreDisco);
+            myFileSystem = new SystemaDeArchivo(nombreDisco);
             System.out.println("Disco creado con exito");
             discoCreado = true;
             
@@ -104,7 +104,7 @@ public class FileSystem {
             System.out.println("Debe ingresar un nombre para el directoiro");
             return;
         }else{
-            //myFileSystem.crearDirectorio(nombreDirectorio);
+            myFileSystem.crearDirectorio(nombreDirectorio);
         }
     }
     

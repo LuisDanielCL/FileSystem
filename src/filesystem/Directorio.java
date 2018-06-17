@@ -1,19 +1,41 @@
 package filesystem;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 
 /**
  *
  * @author kurayami
  */
 public class Directorio extends ArchivoMaestro {
-    LinkedList contenido = new LinkedList();
-    
+    List<Archivo> archivos = new ArrayList<>();
+    List<Directorio> directorios = new ArrayList<>();
     public Directorio(String nombre){
         this.nombre = nombre;
-        this.contenido = new LinkedList();
     }
     
+
+    public boolean agregarDirectorio(String nombreArchivo){
+        for (int i = 0; i < directorios.size(); i++) {
+            if(directorios.get(i).nombre.equals(nombreArchivo)){
+                System.out.print("El directorio ya existe.");
+                return false;
+            }
+        }
+        Directorio nuevoDir = new Directorio(nombreArchivo);
+        directorios.add(nuevoDir);
+        
+        return true;
+    }
+    
+    public void printDir(){
+        for (int i = 0; i < directorios.size(); i++) {
+            System.out.print(directorios.get(i).nombre);
+            
+        }
+    }
+    /*
     public boolean agregarArchivo(Archivo a){
         for(int i = 0; i < contenido.size(); i++) {
             Object o = contenido.get(i);
@@ -29,7 +51,8 @@ public class Directorio extends ArchivoMaestro {
         this.contenido.add(a);
         return true;
     }
-    
+    */
+    /*
     public boolean agregarDirectorio(Directorio a){
         for(int i = 0; i < contenido.size(); i++) {
             Object o = contenido.get(i);
@@ -45,7 +68,8 @@ public class Directorio extends ArchivoMaestro {
         this.contenido.add(a);
         return true;
     }
-    
+    */
+    /*
     public void BorrarDirectorioCompleto(){
         if (!contenido.isEmpty()){
             for(int i = 0; i < contenido.size(); i++){
@@ -62,7 +86,8 @@ public class Directorio extends ArchivoMaestro {
         }
         
     }
-    
+    */
+    /*
     public void removerDirectorio(String directorioEliminar){
         for(int i = 0; i < contenido.size(); i++) {
             Object o = contenido.get(i);
@@ -73,17 +98,17 @@ public class Directorio extends ArchivoMaestro {
                         BorrarDirectorioCompleto();
                     }
             }
-            /*if ( o instanceof Archivo){
+            if ( o instanceof Archivo){
                 contenido.remove(o);
             }
             if ( o instanceof Directorio){
                 contenido.remove(removerDirectorio);
-            }*/
+            }
             }
         }
     }
-    
-    
+    */
+    /*
     public void verDirectorio(){
         for(int i = 0; i < contenido.size(); i++) {
             Object o = contenido.get(i);
@@ -93,7 +118,8 @@ public class Directorio extends ArchivoMaestro {
                 }
             }
     }
-    
+    */
+    /*
     public void removerArchivo(String archivoEliminar){
         for(int i = 0; i < contenido.size(); i++) {
             Object o = contenido.get(i);
@@ -105,4 +131,5 @@ public class Directorio extends ArchivoMaestro {
             }
         }
     }
+    */
 }

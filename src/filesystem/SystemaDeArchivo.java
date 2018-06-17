@@ -13,12 +13,13 @@ public class SystemaDeArchivo {
     String root;
     String rutaA;
     Directorio volumen;
-    
+    Directorio dirActual;
     public SystemaDeArchivo(String nombreDisco){
         this.current = nombreDisco;
         this.root = nombreDisco;
         this.rutaA = nombreDisco;
         Directorio volumen = new Directorio(nombreDisco);
+        dirActual = volumen;
     }
     
     public LinkedList getSystemaDeArchivos(){
@@ -46,5 +47,9 @@ public class SystemaDeArchivo {
     
     public void setRutaA(String ruta){
         this.rutaA = rutaA + "\\" + ruta;
+    }
+
+    void crearDirectorio(String nombreDirectorio) {
+        dirActual.agregarDirectorio(nombreDirectorio);
     }
 }
