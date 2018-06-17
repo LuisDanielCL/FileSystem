@@ -86,6 +86,7 @@ public class FileSystem {
     }
     
     public static void main(String[] args) {
+
         //vacios = new LinkedList();
         //ocupados = new LinkedList();
         myFileSystem = new SystemaDeArchivo();
