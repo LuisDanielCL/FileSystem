@@ -52,4 +52,8 @@ public class SystemaDeArchivo {
     void crearDirectorio(String nombreDirectorio) {
         dirActual.agregarDirectorio(nombreDirectorio);
     }
+
+    void mostrarEstructuraActual() {
+        dirActual.printDir();
+    }
 }

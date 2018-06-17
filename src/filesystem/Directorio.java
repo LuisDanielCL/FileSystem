@@ -11,10 +11,17 @@ import java.util.List;
 public class Directorio extends ArchivoMaestro {
     List<Archivo> archivos = new ArrayList<>();
     List<Directorio> directorios = new ArrayList<>();
+    Directorio directorioAnterior;
+    
     public Directorio(String nombre){
         this.nombre = nombre;
+        directorioAnterior = null;
     }
-    
+
+    public Directorio(String nombre, Directorio dirAnterior){
+        this.nombre = nombre;
+        directorioAnterior = dirAnterior;
+    }
 
     public boolean agregarDirectorio(String nombreArchivo){
         for (int i = 0; i < directorios.size(); i++) {
@@ -31,7 +38,7 @@ public class Directorio extends ArchivoMaestro {
     
     public void printDir(){
         for (int i = 0; i < directorios.size(); i++) {
-            System.out.print(directorios.get(i).nombre);
+            System.out.print(directorios.get(i).nombre + "\n");
             
         }
     }

@@ -222,6 +222,9 @@ public class FileSystem {
     }
     
     
+    private void mostrarEstructuraActual() {
+        myFileSystem.mostrarEstructuraActual();
+    }
     
     
     public void esperarComandos()
@@ -405,6 +408,4 @@ public class FileSystem {
         */
     }
 
-    private void mostrarEstructuraActual() {
-            }
 }
