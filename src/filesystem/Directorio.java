@@ -42,6 +42,25 @@ public class Directorio extends ArchivoMaestro {
             
         }
     }
+    
+    public boolean agregarArchivo(String nombreArchivo){
+        for (int i = 0; i < archivos.size(); i++) {
+            if(archivos.get(i).nombre.equals(nombreArchivo)){
+                System.out.print("El archivo ya existe.");
+                return false;
+            }
+        }
+        Archivo nuevoArchivo = new Archivo("", nombreArchivo, "txt");
+        archivos.add(nuevoArchivo);
+        return true;
+    }
+    
+        public void printArc(){
+        for (int i = 0; i < archivos.size(); i++) {
+            System.out.print(archivos.get(i).nombre + "\n");
+            
+        }
+    }
     /*
     public boolean agregarArchivo(Archivo a){
         for(int i = 0; i < contenido.size(); i++) {
