@@ -41,9 +41,7 @@ public class DiscoVirtual {
     
     public int getTamDiscoV(){
         return this.tamDiscoV;
-    }
-    
-            
+    }      
     
     public void crearRespaldo(){
         File discoRespaldo = new File(this.getNombre()+".txt");
