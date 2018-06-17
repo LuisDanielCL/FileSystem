@@ -11,8 +11,8 @@ public class DiscoVirtual {
     private int numSectores;
     private int tamDiscoV;
     
-    public DiscoVirtual(int pSectores, int pTamSector,int pNumSectores){
-        tamSector = pTamSector;
+    public DiscoVirtual(String pNombre, int pTamSector,int pNumSectores){
+        nombre = pNombre;
         tamSector = pTamSector;
         numSectores = pNumSectores ;
     }
@@ -47,9 +47,7 @@ public class DiscoVirtual {
     
     public int getTamDiscoV(){
         return this.tamDiscoV;
-    }
-    
-            
+    }      
     
     public void crearRespaldo(){
         File discoRespaldo = new File(this.getNombre()+".txt");
