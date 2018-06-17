@@ -1,6 +1,10 @@
 package filesystem;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.List;
 /**
  *
  * @author kurayami
@@ -9,12 +13,15 @@ public class DiscoVirtual {
     private String nombre;
     private int tamSector;
     private int numSectores;
-    private int tamDiscoV;
-    
+    private int tamDiscoV;    
+    LinkedList vacios = new LinkedList();
+    LinkedList ocupados = new LinkedList();
+    List<Integer> sector;
     public DiscoVirtual(String pNombre, int pTamSector,int pNumSectores){
         nombre = pNombre;
         tamSector = pTamSector;
         numSectores = pNumSectores ;
+        sector = new ArrayList<Integer>(Collections.nCopies(numSectores, 0));
     }
     
     public String getNombre() {
@@ -61,8 +68,17 @@ public class DiscoVirtual {
         }
         try{
             PrintWriter escribir = new PrintWriter(discoRespaldo);
-            for(int i = 0; i < this.tamDiscoV; i++){
-                escribir.print("0");
+            for(int i = 0; i < sector.size(); i++){
+                int camposOcupados = sector.get(i);
+                for(int j=0; j< tamSector; j++){
+                    
+                    if(j<camposOcupados){
+                        escribir.print("1");
+                    }else{
+                        escribir.print("0");
+                    }
+                }
+                
             }
             System.out.println(discoRespaldo.getName()+ " ha sido modificado");
             escribir.close();
@@ -71,7 +87,10 @@ public class DiscoVirtual {
         }
     }
     
-    public void modificarRespaldo(){
+    public void llenarSectores(int tamano, LinkedList sectores){
+        
+    }
+    public void vaciarSectores(){
         //proximamente
     }
 }

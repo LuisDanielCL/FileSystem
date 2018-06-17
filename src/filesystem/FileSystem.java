@@ -251,6 +251,7 @@ public class FileSystem {
     }
     
     public static void main(String[] args) {
+
         //vacios = new LinkedList();
         //ocupados = new LinkedList();
         
@@ -260,6 +261,7 @@ public class FileSystem {
         
         
         /*System.out.print(myFileSystem.SystemaDeArchivos);
+
         myFileSystem.setSystemaDeArchivos(new Directorio("porno"));
         myFileSystem.setCurrent("actual");
         myFileSystem.setRoot("root");

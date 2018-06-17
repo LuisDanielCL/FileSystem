@@ -12,6 +12,14 @@ public class SystemaDeArchivo {
     String current;
     String root;
     String rutaA;
+    Directorio volumen;
+    
+    public SystemaDeArchivo(String nombreDisco){
+        this.current = nombreDisco;
+        this.root = nombreDisco;
+        this.rutaA = nombreDisco;
+        Directorio volumen = new Directorio(nombreDisco);
+    }
     
     public LinkedList getSystemaDeArchivos(){
         return SystemaDeArchivos;
