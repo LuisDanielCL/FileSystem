@@ -72,6 +72,7 @@ public class FileSystem {
     public void pedirDatosCrearArchivo(DiscoVirtual discoVirtual)
     {
         int requieroSectores = 0;
+        ArrayList ubicacion = new ArrayList();
         if (discoCreado == false)
         {
             System.out.println("Disco virtual no creado");
@@ -107,7 +108,8 @@ public class FileSystem {
             System.out.println("Extension no reconocida");
             return;
         }
-        discoVirtual.llenarSectores(texto.length(),requieroSectores );
+        ubicacion = (ArrayList) discoVirtual.llenarSectores(texto.length(),requieroSectores).clone();
+        
     }
     
     public void pedirDatosCrearDirectorio()

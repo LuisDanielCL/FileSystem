@@ -1,7 +1,9 @@
 package filesystem;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
-
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 /**
  *
@@ -9,25 +11,30 @@ import java.util.Date;
  */
 public class Archivo extends ArchivoMaestro {
     //int id;
-    LinkedList ubicacion = new LinkedList();
+    ArrayList ubicacion = new ArrayList();
     int tamano;
     String fechaCreacion;
     String ultimaModificacion;
     String datos; 
-    String nombre;
     
     public Archivo(String pDatos,String pNombre, String pTipo){
+        LocalDateTime now = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        fechaCreacion = now.format(formatter);
+        ultimaModificacion = now.format(formatter);
+        //fechaCreacion = now.getDayOfMonth()+ "-" + now.getMonth() + "-" + now.getYear() + " " + now.getHour() + ":" + now.getMinute() + ":" + now.getSecond();
         datos = pDatos;
         nombre = pNombre;
         tipo = pTipo;
         
+        
     }
 
-    public LinkedList getUbicacion() {
+    public ArrayList getUbicacion() {
         return this.ubicacion;
     }
     
-    public void setUbicacion(int ubicacion) {
+    public void setUbicacion(ArrayList ubicacion) {
         this.ubicacion.add(ubicacion);
     }
     
