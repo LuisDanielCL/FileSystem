@@ -73,4 +73,8 @@ public class SystemaDeArchivo {
     void listarDirectorioActual() {
         dirActual.listarDirectorio();
     }
+
+    void crearArchivo(String texto, String nombreArchivo, String extension, DiscoVirtual discoVirtual) {
+        dirActual.agregarArchivo(texto, nombreArchivo, extension, discoVirtual);
+    }
 }

@@ -71,8 +71,6 @@ public class FileSystem {
     
     public void pedirDatosCrearArchivo(DiscoVirtual discoVirtual)
     {
-        int requieroSectores = 0;
-        ArrayList ubicacion = new ArrayList();
         if (discoCreado == false)
         {
             System.out.println("Disco virtual no creado");
@@ -84,11 +82,7 @@ public class FileSystem {
         }
         System.out.print("Ingrese el contenido: ");
         String texto = entrada.nextLine();
-        requieroSectores = (int) Math.ceil(texto.length() / discoVirtual.getTamSector());
-        if (requieroSectores >= discoVirtual.sectoresDisponibles()){
-            System.out.println("No hay espacio en disco para crear ese archivo");
-            return;
-        }
+
         
         System.out.print("Ingrese el nombre del archivo: ");
         String nombreArchivo = entrada.nextLine();
@@ -102,13 +96,11 @@ public class FileSystem {
         String extension = entrada.nextLine();
         if (extension.equals("TXT") || extension.equals("txt"))
         {
-            //myFileSystem.crearArchivo(texto, nombreArchivo, extension);
-            
+            myFileSystem.crearArchivo(texto, nombreArchivo,".txt",discoVirtual);
         }else{
             System.out.println("Extension no reconocida");
             return;
         }
-        ubicacion = (ArrayList) discoVirtual.llenarSectores(texto.length(),requieroSectores).clone();
         
     }
     

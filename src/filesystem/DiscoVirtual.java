@@ -98,17 +98,16 @@ public class DiscoVirtual {
         }
         return cantidad;
     }
-    public ArrayList llenarSectores(int tamano, int cantsectores){
+    public ArrayList llenarSectores(int tamano){
         ArrayList sectoresArchivo = new ArrayList();
-        for(int i = 0; i < numSectores ; i++ ){
+        for(int i = 0; i < sector.size() ; i++ ){
             if (sector.get(i) == 0){
                 sectoresArchivo.add(i);
-                if(sectoresArchivo.size() == cantsectores && ((tamano % tamSector) != 0)){
-                    sector.set(i, (tamano % tamSector));
-                }else{
-                    sector.set(i, tamSector);
+                sector.set(i,tamano);
+                if(tamano <= tamSector){
+                    return sectoresArchivo;
                 }
-                
+                tamano -= tamSector;
             }
         }
         return sectoresArchivo;
