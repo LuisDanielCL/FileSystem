@@ -43,14 +43,14 @@ public class Directorio extends ArchivoMaestro {
         }
     }
     
-    public boolean agregarArchivo(String nombreArchivo){
+    public boolean agregarArchivo(String datos, String nombreArchivo, String tipo){
         for (int i = 0; i < archivos.size(); i++) {
             if(archivos.get(i).nombre.equals(nombreArchivo)){
                 System.out.print("El archivo ya existe.");
                 return false;
             }
         }
-        Archivo nuevoArchivo = new Archivo("", nombreArchivo, "txt");
+        Archivo nuevoArchivo = new Archivo(datos, nombreArchivo, tipo);
         archivos.add(nuevoArchivo);
         return true;
     }
