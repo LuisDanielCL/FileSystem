@@ -96,7 +96,7 @@ public class FileSystem {
         String extension = entrada.nextLine();
         if (extension.equals("TXT") || extension.equals("txt"))
         {
-            myFileSystem.crearArchivo(texto, nombreArchivo,".txt",discoVirtual);
+            myFileSystem.crearArchivo(texto, nombreArchivo,"txt",discoVirtual);
         }else{
             System.out.println("Extension no reconocida");
             return;
@@ -282,17 +282,13 @@ public class FileSystem {
         {
             System.out.println("Debe ingresar un nombre");
         }else{
-            /*
-            if (myFileSystem.esArchivo(nombre)
-            {
-                myFileSystem.eliminarArchivo(nombre)
-            }else if (mFileSystem.esDirectorio(nombre)
-            {
-                myFileSystem.eliminardirectorio(nombre)
-            }else{
-                System.out.println("Nombre no encnontrado en directorio actual");
+            String[] nombreList = nombre.split(".", 2);
+            if(nombreList.length>1){
+                if(nombreList[1].toUpperCase().equals("txt"));
+                myFileSystem.eliminarArchivo(nombre);
             }
-            */
+            
+
         }
     }
     

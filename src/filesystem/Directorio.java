@@ -117,6 +117,17 @@ public class Directorio extends ArchivoMaestro {
         disco.crearRespaldo();
         return true;
     }
+
+    public void elimiarArchivo(String nombreArch) {
+        for(int i=0;i< archivos.size(); i++){
+            if(archivos.get(i).nombre.equals(nombreArch)){
+                Archivo archivoEliminar = archivos.get(i);
+                
+            }
+        }
+    }
+    
+    
     
     public boolean propiedadesArchivo(String nombreArchivo, DiscoVirtual disco){
         for (int i = 0; i < archivos.size(); i++) {
@@ -227,6 +238,8 @@ public class Directorio extends ArchivoMaestro {
         }
     }
     */
+
+
 
 
 
