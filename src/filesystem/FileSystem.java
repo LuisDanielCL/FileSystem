@@ -71,6 +71,11 @@ public class FileSystem {
     
     public void pedirDatosCrearArchivo()
     {
+        if (discoCreado == false)
+        {
+            System.out.println("Disco virtual no creado");
+            return;
+        }
         
         System.out.print("Ingrese el contenido: ");
         String texto = entrada.nextLine();
@@ -97,6 +102,12 @@ public class FileSystem {
     
     public void pedirDatosCrearDirectorio()
     {
+        if (discoCreado == false)
+        {
+            System.out.println("Disco virtual no creado");
+            return;
+        }
+        
         System.out.print("Ingrese el nombre del directorio: ");
         String nombreDirectorio = entrada.nextLine();
         if (nombreDirectorio.length() == 0)
@@ -110,6 +121,12 @@ public class FileSystem {
     
     public void pedirDatosCambiarDirectorio()
     {
+        if (discoCreado == false)
+        {
+            System.out.println("Disco virtual no creado");
+            return;
+        }
+        
         System.out.print("Ingrese el directorio al que quiere moverse: ");
         String nombreDirectorio = entrada.nextLine();
         if (nombreDirectorio.length() == 0)
@@ -123,11 +140,22 @@ public class FileSystem {
     
     public void listarDatosDirectorio()
     {
+        if (discoCreado == false)
+        {
+            System.out.println("Disco virtual no creado");
+            return;
+        }
         //myFileSystem.listarDirectorioActual();
     }
     
     public void modificarContenidoArchivo()
     {
+        if (discoCreado == false)
+        {
+            System.out.println("Disco virtual no creado");
+            return;
+        }
+        
         System.out.print("Ingrese el nombre del archivo a modificar: ");
         String nombreArchivo = entrada.nextLine();
         /*Archivo archivo = myFileSystem.getArchivo(nombreArchivo);
@@ -141,6 +169,12 @@ public class FileSystem {
     
     public void verPropiedadesDeArchivo()
     {
+        if (discoCreado == false)
+        {
+            System.out.println("Disco virtual no creado");
+            return;
+        }
+        
         System.out.print("Ingrese el nombre del archivo: ");
         /*Archivo archivo = myFileSystem.getArchivo(nombreArchivo);
         archivo.printPropiedades();
@@ -149,6 +183,12 @@ public class FileSystem {
     
     public void verContenidoArchivo()
     {
+        if (discoCreado == false)
+        {
+            System.out.println("Disco virtual no creado");
+            return;
+        }
+        
         System.out.print("Ingrese el nombre del archivo");
         String nombreArchivo = entrada.nextLine();
         /*Archivo archivo = myFileSystem.getArchivo(nombreArchivo);
@@ -159,6 +199,12 @@ public class FileSystem {
     
     public void copiarArchivo()
     {
+        if (discoCreado == false)
+        {
+            System.out.println("Disco virtual no creado");
+            return;
+        }
+        
         System.out.print("Ingrese la ruta del archivo a ser copiado: ");
         String rutaInicio = entrada.nextLine();
         System.out.print("Ingrese la ruta donde se desea copiar: ");
@@ -174,6 +220,12 @@ public class FileSystem {
     
     public void moverArchivo()
     {
+        if (discoCreado == false)
+        {
+            System.out.println("Disco virtual no creado");
+            return;
+        }
+        
         System.out.print("Ingrese la ruta del archivo o directorio a ser movido: ");
         String rutaInicio = entrada.nextLine();
         System.out.print("Ingrese la ruta donde se desea mover: ");
@@ -196,6 +248,12 @@ public class FileSystem {
     
     public void removerArchivo()
     {
+        if (discoCreado == false)
+        {
+            System.out.println("Disco virtual no creado");
+            return;
+        }
+        
         System.out.print("Ingrese el nombre del archivo o directorio: ");
         String nombre = entrada.nextLine();
         if (nombre.length() == 0)
@@ -218,6 +276,12 @@ public class FileSystem {
     
     public void mostrarEstructuraVolumen()
     {
+        if (discoCreado == false)
+        {
+            System.out.println("Disco virtual no creado");
+            return;
+        }
+        
         //myFileSystem.mostrarEstructuraVolumen();
     }
     
