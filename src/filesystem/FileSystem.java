@@ -138,6 +138,17 @@ public class FileSystem {
         }
     }
     
+    public void volverAtras()
+    {
+        if (discoCreado == false)
+        {
+            System.out.println("Disco virtual no creado");
+            return;
+        }     
+            myFileSystem.volverAtras();
+    }
+       
+    
     public void listarDatosDirectorio()
     {
         if (discoCreado == false)
@@ -360,6 +371,10 @@ public class FileSystem {
                 case "TREET":
                     mostrarEstructuraActual();
                     break;
+                    
+                case "BACK":
+                    volverAtras();
+                    break;
                  
                 case "EXIT":
                     continuar = false;
@@ -371,6 +386,7 @@ public class FileSystem {
                             + "FLE (Crear archivo)\n"
                             + "MKDIR (Crear directorio)\n"
                             + "CHDIR (Cambiar de directorio)\n"
+                            + "BACK (Volver al directorio previo)\n"
                             + "LDIR (Listar contenidos de directorio)\n"
                             + "MFLE (Mofificar contenido de archivo)\n"
                             + "PPT (Ver propiedades de archivo)\n"
@@ -379,7 +395,6 @@ public class FileSystem {
                             +"MOV (Mover archivos o directorios)\n"
                             + "REM (Remover archivos o directorios\n"
                             + "TREE (Mostrar estructura logical de FS)\n"
-                            + "BACK (Volver al directorio previo)\n"
                             + "EXIT (Salir del programa)\n";
                     System.out.println(comandos);
                     break;

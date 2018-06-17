@@ -2,6 +2,7 @@ package filesystem;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 /**
  *
@@ -12,6 +13,7 @@ public class Directorio extends ArchivoMaestro {
     List<Directorio> directorios = new ArrayList<>();
     Directorio directorioAnterior;
     String ruta;
+    Scanner entrada = new Scanner(System.in);
     public Directorio(String nombre){
         this.nombre = nombre;
         ruta = nombre;
@@ -33,13 +35,35 @@ public class Directorio extends ArchivoMaestro {
         System.out.print("No se encontro el directorio especificado.");
         return this;
     }
+    public Directorio volverAtras(){
+        if(directorioAnterior == null){
+            System.out.println("No se puede volver, ya esta en la raiz.");
+            return this;
+        }
+        return directorioAnterior;
+    }
 
     public boolean agregarDirectorio(String nombreDirectorio){
-        System.out.print(nombre+":");
         for (int i = 0; i < directorios.size(); i++) {
             if(directorios.get(i).nombre.equals(nombreDirectorio)){
-                System.out.print("El directorio ya existe.");
-                return false;
+                System.out.print("El directorio ya existe, desea remplazarlo(S/N):");
+                String opcion = entrada.nextLine();
+                switch (opcion.toUpperCase()){
+                case "S":
+                    System.out.println("Se remplaza");
+                    //Eliminar()
+                    //eliminar el return y dejar brake
+                    return false;
+                    //break;
+                    
+                case "N":
+                    System.out.println("Se mantiene");
+                    return false;
+                default:
+                    System.out.println("Comando invalido");
+                    return false;
+                }
+                
             }
         }
         Directorio nuevoDir = new Directorio(nombreDirectorio,this);

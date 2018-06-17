@@ -65,4 +65,8 @@ public class SystemaDeArchivo {
         
         return dirActual.ruta;
     }
+
+    void volverAtras() {
+        dirActual = dirActual.volverAtras();
+    }
 }
