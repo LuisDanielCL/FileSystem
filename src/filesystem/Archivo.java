@@ -61,4 +61,8 @@ public class Archivo extends ArchivoMaestro {
                 ultimaModificacion + "\n" + "Tamaño: " + datos.length() + "\n";
         return propiedadesA;
     }    
+    
+    public String verDatos(){
+        return this.datos;
+    }
 }
