@@ -10,17 +10,93 @@ import java.util.Collections;
  * @author kurayami
  */
 
-public class FileSystem {
 
-    /**
-     * @param args the command line arguments
-     */
+
+public class FileSystem {
+    //static LinkedList vacios;
+    //static LinkedList ocupados;
+    static DiscoVirtual discoVirtual;
+    static SystemaDeArchivo myFileSystem;
+    
+    boolean discoCreado = false;
+    
+    
+    public void pedirDatosDisco() {
+        if (discoCreado == false)
+        {
+            Scanner entrada  = new Scanner(System.in);
+            System.out.print("Digite el nombre del Disco Virtual: ");
+            String nombreDisco = entrada.nextLine();
+            if (nombreDisco.length() == 0)
+            {
+                System.out.println("Debe ingresar un nombre para el disco");
+                return;
+            }
+        
+            int tamanoSector;
+            System.out.print("Digite el tamaño del sector: ");
+            if (entrada.hasNextInt())
+            {
+                tamanoSector = entrada.nextInt();
+            }else{
+                System.out.println("Debe ingresar un tamano entero");
+                return;
+            }
+        
+            int cantSectores;
+            System.out.print("Digite la cantidad de sectores: ");
+            if (entrada.hasNextInt())
+            {
+                cantSectores = entrada.nextInt();
+                if (cantSectores <= 0)
+                {
+                    System.out.println("debe ingresar una cantidad mayor que cero");
+                    return;
+                }
+            }else{
+                System.out.println("Debe ingresar una cantidad entera");
+                return;
+            }
+            discoVirtual = new DiscoVirtual(nombreDisco, tamanoSector, cantSectores);
+            discoVirtual.setTamDiscoV();
+            discoVirtual.crearRespaldo();
+            System.out.println("Disco creado con exito");
+            discoCreado = true;
+            
+        }else{
+            System.out.println("Disco ya creado");
+        }       
+    }
+    
+    public void esperarComandos()
+    {
+        System.out.println("=====Sistema de archivos=====");
+        Scanner entrada = new Scanner(System.in);
+        boolean continuar = true;
+        
+        while (continuar)
+        {
+            String comando = entrada.nextLine();
+            switch (comando)
+            {
+                case "CRT":
+                    pedirDatosDisco();
+            }
+        }
+    }
+    
     public static void main(String[] args) {
-        LinkedList vacios = new LinkedList();
-        LinkedList ocupados = new LinkedList();
-        DiscoVirtual discoVirtual = new DiscoVirtual("1",1,1);
-        SystemaDeArchivo myFileSystem = new SystemaDeArchivo();
-        System.out.print(myFileSystem.SystemaDeArchivos);
+
+        //vacios = new LinkedList();
+        //ocupados = new LinkedList();
+        myFileSystem = new SystemaDeArchivo();
+        
+        FileSystem instancia = new FileSystem();
+        instancia.esperarComandos();
+        
+        
+        
+        /*System.out.print(myFileSystem.SystemaDeArchivos);
         myFileSystem.setSystemaDeArchivos(new Directorio("porno"));
         myFileSystem.setCurrent("actual");
         myFileSystem.setRoot("root");
