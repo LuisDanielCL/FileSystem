@@ -282,6 +282,10 @@ public class FileSystem {
                 case "TREE":
                     mostrarEstructuraVolumen();
                     break;
+                    
+                case "TREET":
+                    mostrarEstructuraActual();
+                    break;
                  
                 case "EXIT":
                     continuar = false;
@@ -400,4 +404,7 @@ public class FileSystem {
         System.out.print(lista);
         */
     }
+
+    private void mostrarEstructuraActual() {
+            }
 }
