@@ -194,6 +194,33 @@ public class FileSystem {
         }
     }
     
+    public void removerArchivo()
+    {
+        System.out.print("Ingrese el nombre del archivo o directorio: ");
+        String nombre = entrada.nextLine();
+        if (nombre.length() == 0)
+        {
+            System.out.println("Debe ingresar un nombre");
+        }else{
+            /*
+            if (myFileSystem.esArchivo(nombre)
+            {
+                myFileSystem.eliminarArchivo(nombre)
+            }else if (mFileSystem.esDirectorio(nombre)
+            {
+                myFileSystem.eliminardirectorio(nombre)
+            }else{
+                System.out.println("Nombre no encnontrado en directorio actual");
+            }
+            */
+        }
+    }
+    
+    public void mostrarEstructuraVolumen()
+    {
+        //myFileSystem.mostrarEstructuraVolumen();
+    }
+    
     
     
     
@@ -246,6 +273,37 @@ public class FileSystem {
                     
                 case "MOV":
                     moverArchivo();
+                    break;
+                    
+                case "REM":
+                    removerArchivo();
+                    break;
+                
+                case "TREE":
+                    mostrarEstructuraVolumen();
+                    break;
+                 
+                case "EXIT":
+                    continuar = false;
+                    
+                default:
+                    System.out.println("Comando invalido");
+                    System.out.println("Comandos validos: ");
+                    String comandos = "CRT (Crear disco)\n"
+                            + "FLE (Crear archivo)\n"
+                            + "MKDIR (Crear directorio)\n"
+                            + "CHDIR (Cambiar de directorio)\n"
+                            + "LDIR (Listar contenidos de directorio)\n"
+                            + "MFLE (Mofificar contenido de archivo)\n"
+                            + "PPT (Ver propiedades de archivo)\n"
+                            + "VIEW (Ver contenido de archivo)\n"
+                            + "CPY (Copiar archivos o directorios)\n"
+                            +"MOV (Mover archivos o directorios)\n"
+                            + "REM (Remover archivos o directorios\n"
+                            + "TREE (Mostrar estructura logical de FS)\n"
+                            + "EXIT (Salir del programa)\n";
+                    System.out.println(comandos);
+                    break;
             }
         }
     }
