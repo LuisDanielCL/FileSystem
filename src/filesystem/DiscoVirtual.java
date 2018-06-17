@@ -89,8 +89,29 @@ public class DiscoVirtual {
         }
     }
     
-    public void llenarSectores(int tamano, LinkedList sectores){
-        
+    public int sectoresDisponibles(){
+        int cantidad = 0;
+        for(int i = 0; i < numSectores ; i++ ){
+            if (sector.get(i) == 0){
+                cantidad = cantidad + 1;
+            }
+        }
+        return cantidad;
+    }
+    public ArrayList llenarSectores(int tamano, int cantsectores){
+        ArrayList sectoresArchivo = new ArrayList();
+        for(int i = 0; i < numSectores ; i++ ){
+            if (sector.get(i) == 0){
+                sectoresArchivo.add(i);
+                if(sectoresArchivo.size() == cantsectores && ((tamano % tamSector) != 0)){
+                    sector.set(i, (tamano % tamSector));
+                }else{
+                    sector.set(i, tamSector);
+                }
+                
+            }
+        }
+        return sectoresArchivo;
     }
     public void vaciarSectores(){
         //proximamente

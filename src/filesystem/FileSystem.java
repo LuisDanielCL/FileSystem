@@ -69,16 +69,25 @@ public class FileSystem {
         }       
     }
     
-    public void pedirDatosCrearArchivo()
+    public void pedirDatosCrearArchivo(DiscoVirtual discoVirtual)
     {
+        int requieroSectores = 0;
         if (discoCreado == false)
         {
             System.out.println("Disco virtual no creado");
             return;
         }
-        
+        if (discoVirtual.sectoresDisponibles()== 0){
+            System.out.println("No hay espacio en disco para crear archivos");
+            return;
+        }
         System.out.print("Ingrese el contenido: ");
         String texto = entrada.nextLine();
+        requieroSectores = (int) Math.ceil(texto.length() / discoVirtual.getTamSector());
+        if (requieroSectores >= discoVirtual.sectoresDisponibles()){
+            System.out.println("No hay espacio en disco para crear ese archivo");
+            return;
+        }
         
         System.out.print("Ingrese el nombre del archivo: ");
         String nombreArchivo = entrada.nextLine();
@@ -98,6 +107,7 @@ public class FileSystem {
             System.out.println("Extension no reconocida");
             return;
         }
+        discoVirtual.llenarSectores(texto.length(),requieroSectores );
     }
     
     public void pedirDatosCrearDirectorio()
@@ -325,7 +335,7 @@ public class FileSystem {
                     break;
                     
                 case "FLE":
-                    pedirDatosCrearArchivo();
+                    pedirDatosCrearArchivo(discoVirtual);
                     break;
                     
                 case "MKDIR":
