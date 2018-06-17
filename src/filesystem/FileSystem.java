@@ -156,7 +156,7 @@ public class FileSystem {
             System.out.println("Disco virtual no creado");
             return;
         }
-        //myFileSystem.listarDirectorioActual();
+        myFileSystem.listarDirectorioActual();
     }
     
     public void modificarContenidoArchivo()
@@ -318,7 +318,7 @@ public class FileSystem {
             }
             
             String comando = entrada.nextLine();
-            switch (comando)
+            switch (comando.toUpperCase())
             {
                 case "CRT":
                     pedirDatosDisco();

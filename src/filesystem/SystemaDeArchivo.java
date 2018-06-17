@@ -54,7 +54,7 @@ public class SystemaDeArchivo {
     }
 
     void mostrarEstructuraActual() {
-        dirActual.printDir();
+        dirActual.printDir("");
     }
 
     void cambiarDirectorio(String nombreDirectorio) {
@@ -68,5 +68,9 @@ public class SystemaDeArchivo {
 
     void volverAtras() {
         dirActual = dirActual.volverAtras();
+    }
+
+    void listarDirectorioActual() {
+        dirActual.listarDirectorio();
     }
 }

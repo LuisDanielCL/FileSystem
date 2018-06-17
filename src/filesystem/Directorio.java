@@ -27,12 +27,17 @@ public class Directorio extends ArchivoMaestro {
     }
     
     public Directorio moverseA(String nuevaDir){
+        String[] divDir = nuevaDir.split("/", 2);
+        
         for (int i = 0; i < directorios.size(); i++) {
-            if(directorios.get(i).nombre.equals(nuevaDir)){
+            if(directorios.get(i).nombre.equals(divDir[0])){
+                if(divDir.length > 1){
+                    return directorios.get(i).moverseA(divDir[1]);
+                }
                 return directorios.get(i);
             }
         }
-        System.out.print("No se encontro el directorio especificado.");
+        System.out.println("No se encontro el directorio especificado.");
         return this;
     }
     public Directorio volverAtras(){
@@ -72,14 +77,25 @@ public class Directorio extends ArchivoMaestro {
         return true;
     }
     
-    public void printDir(){
+    public void printDir(String profundidad){
         for (int i = 0; i < directorios.size(); i++) {
-            System.out.print(directorios.get(i).nombre + "\n");   
+            System.out.print(profundidad + directorios.get(i).nombre + "\n");
+            directorios.get(i).printDir("-"+profundidad);
         }
         for (int i = 0; i < archivos.size(); i++) {
-            System.out.print(archivos.get(i).nombre +"."+tipo+ "\n");         
+            System.out.print(profundidad + archivos.get(i).nombre +"."+tipo+ "\n");         
         }
     }
+    
+    public void listarDirectorio(){
+        for (int i = 0; i < directorios.size(); i++) {
+            System.out.print("DIR---"+directorios.get(i).nombre + "\n");   
+        }
+        for (int i = 0; i < archivos.size(); i++) {
+            System.out.print("FILE---"+archivos.get(i).nombre +"."+tipo+ "\n");         
+        }
+    }
+    
     
 
     public boolean agregarArchivo(String datos, String nombreArchivo, String tipo){
