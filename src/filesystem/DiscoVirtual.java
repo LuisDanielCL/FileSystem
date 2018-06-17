@@ -11,6 +11,12 @@ public class DiscoVirtual {
     private int numSectores;
     private int tamDiscoV;
     
+    public DiscoVirtual(int pSectores, int pTamSector,int pNumSectores){
+        tamSector = pTamSector;
+        tamSector = pTamSector;
+        numSectores = pNumSectores ;
+    }
+    
     public String getNombre() {
         return this.nombre;
     }
