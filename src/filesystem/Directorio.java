@@ -2,6 +2,7 @@ package filesystem;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 /**
  *
@@ -12,6 +13,7 @@ public class Directorio extends ArchivoMaestro {
     List<Directorio> directorios = new ArrayList<>();
     Directorio directorioAnterior;
     String ruta;
+    Scanner entrada = new Scanner(System.in);
     public Directorio(String nombre){
         this.nombre = nombre;
         ruta = nombre;
@@ -25,21 +27,48 @@ public class Directorio extends ArchivoMaestro {
     }
     
     public Directorio moverseA(String nuevaDir){
+        String[] divDir = nuevaDir.split("/", 2);
+        
         for (int i = 0; i < directorios.size(); i++) {
-            if(directorios.get(i).nombre.equals(nuevaDir)){
+            if(directorios.get(i).nombre.equals(divDir[0])){
+                if(divDir.length > 1){
+                    return directorios.get(i).moverseA(divDir[1]);
+                }
                 return directorios.get(i);
             }
         }
-        System.out.print("No se encontro el directorio especificado.");
+        System.out.println("No se encontro el directorio especificado.");
         return this;
+    }
+    public Directorio volverAtras(){
+        if(directorioAnterior == null){
+            System.out.println("No se puede volver, ya esta en la raiz.");
+            return this;
+        }
+        return directorioAnterior;
     }
 
     public boolean agregarDirectorio(String nombreDirectorio){
-        System.out.print(nombre+":");
         for (int i = 0; i < directorios.size(); i++) {
             if(directorios.get(i).nombre.equals(nombreDirectorio)){
-                System.out.print("El directorio ya existe.");
-                return false;
+                System.out.print("El directorio ya existe, desea remplazarlo(S/N):");
+                String opcion = entrada.nextLine();
+                switch (opcion.toUpperCase()){
+                case "S":
+                    System.out.println("Se remplaza");
+                    //Eliminar()
+                    //eliminar el return y dejar brake
+                    return false;
+                    //break;
+                    
+                case "N":
+                    System.out.println("Se mantiene");
+                    return false;
+                default:
+                    System.out.println("Comando invalido");
+                    return false;
+                }
+                
             }
         }
         Directorio nuevoDir = new Directorio(nombreDirectorio,this);
@@ -48,14 +77,25 @@ public class Directorio extends ArchivoMaestro {
         return true;
     }
     
-    public void printDir(){
+    public void printDir(String profundidad){
         for (int i = 0; i < directorios.size(); i++) {
-            System.out.print(directorios.get(i).nombre + "\n");   
+            System.out.print(profundidad + directorios.get(i).nombre + "\n");
+            directorios.get(i).printDir("-"+profundidad);
         }
         for (int i = 0; i < archivos.size(); i++) {
-            System.out.print(archivos.get(i).nombre +"."+tipo+ "\n");         
+            System.out.print(profundidad + archivos.get(i).nombre +"."+tipo+ "\n");         
         }
     }
+    
+    public void listarDirectorio(){
+        for (int i = 0; i < directorios.size(); i++) {
+            System.out.print("DIR---"+directorios.get(i).nombre + "\n");   
+        }
+        for (int i = 0; i < archivos.size(); i++) {
+            System.out.print("FILE---"+archivos.get(i).nombre +"."+tipo+ "\n");         
+        }
+    }
+    
     
 
     public boolean agregarArchivo(String datos, String nombreArchivo, String tipo){
