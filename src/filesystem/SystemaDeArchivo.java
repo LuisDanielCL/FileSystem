@@ -77,4 +77,8 @@ public class SystemaDeArchivo {
     void crearArchivo(String texto, String nombreArchivo, String extension, DiscoVirtual discoVirtual) {
         dirActual.agregarArchivo(texto, nombreArchivo, extension, discoVirtual);
     }
+
+    void eliminarArchivo(String nombre) {
+        dirActual.elimiarArchivo(nombre);
+    }
 }
