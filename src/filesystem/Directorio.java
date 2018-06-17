@@ -158,7 +158,7 @@ public class Directorio extends ArchivoMaestro {
     public boolean propiedadesArchivo(String nombreArchivo, DiscoVirtual disco){
         for (int i = 0; i < archivos.size(); i++) {
             if(archivos.get(i).nombre.equals(nombreArchivo)){
-                System.out.print("El archivo fue encontrado.");
+                System.out.println("El archivo fue encontrado.");
                 archivos.get(i).verPropiedades();
                 return true;
             }
@@ -167,11 +167,17 @@ public class Directorio extends ArchivoMaestro {
         return false;
     }
     
-    
 
-
-
-
-
+    public boolean contenidoArchivo(String nombreArchivo, DiscoVirtual disco){
+        for (int i = 0; i < archivos.size(); i++) {
+            if(archivos.get(i).nombre.equals(nombreArchivo)){
+                System.out.println("El archivo fue encontrado.");
+                archivos.get(i).getDatos();
+                return true;
+            }
+        }
+        System.out.print("El archivo no fue encontrado.");
+        return false;
+    }
 
 }

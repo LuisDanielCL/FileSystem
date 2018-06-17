@@ -91,4 +91,10 @@ public class SystemaDeArchivo {
     void eliminarDirectorio(String nombre, DiscoVirtual discoVirtual) {
         dirActual.elimiarDirectorio(nombre, discoVirtual);
     }
+    
+    void contenidoArchivo(String nombreArchivo, DiscoVirtual disco){
+        dirActual.contenidoArchivo(nombreArchivo, disco);
+
+
+    }
 }

@@ -47,6 +47,7 @@ public class Archivo extends ArchivoMaestro {
     }
     */
     public String getDatos() {
+        System.out.println(datos);
         return this.datos;
     }
     
@@ -58,7 +59,8 @@ public class Archivo extends ArchivoMaestro {
         String propiedadesA;
         propiedadesA = "Nombre: " + nombre + "\n" + "Extension: " + tipo + "\n" +
                 "Fecha de creacion: " + fechaCreacion + "\n" + "Ultima modificacion: " + 
-                ultimaModificacion + "\n" + "Tamaño: " + datos.length() + "\n";
+                ultimaModificacion + "\n" + "Tamaño: " + datos.length() + "bytes" +"\n";
+                System.out.println(propiedadesA);
         return propiedadesA;
     }    
     
