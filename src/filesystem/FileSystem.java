@@ -19,12 +19,12 @@ public class FileSystem {
     static SystemaDeArchivo myFileSystem;
     
     boolean discoCreado = false;
+    Scanner entrada = new Scanner(System.in);
     
     
     public void pedirDatosDisco() {
         if (discoCreado == false)
         {
-            Scanner entrada  = new Scanner(System.in);
             System.out.print("Digite el nombre del Disco Virtual: ");
             String nombreDisco = entrada.nextLine();
             if (nombreDisco.length() == 0)
@@ -60,6 +60,7 @@ public class FileSystem {
             discoVirtual = new DiscoVirtual(nombreDisco, tamanoSector, cantSectores);
             discoVirtual.setTamDiscoV();
             discoVirtual.crearRespaldo();
+            //myFileSystem = new SystemaDeArchivo(nombreDisco);
             System.out.println("Disco creado con exito");
             discoCreado = true;
             
@@ -67,6 +68,134 @@ public class FileSystem {
             System.out.println("Disco ya creado");
         }       
     }
+    
+    public void pedirDatosCrearArchivo()
+    {
+        
+        System.out.print("Ingrese el contenido: ");
+        String texto = entrada.nextLine();
+        
+        System.out.print("Ingrese el nombre del archivo: ");
+        String nombreArchivo = entrada.nextLine();
+        if (nombreArchivo.length() == 0)
+        {
+            System.out.println("Debe ingresar un nombre para el archivo");
+            return;
+        }
+        
+        System.out.println("Ingrese la extension del archivo");
+        String extension = entrada.nextLine();
+        if (extension.equals("TXT") || extension.equals("txt"))
+        {
+            //myFileSystem.crearArchivo(texto, nombreArchivo, extension);
+            
+        }else{
+            System.out.println("Extension no reconocida");
+            return;
+        }
+    }
+    
+    public void pedirDatosCrearDirectorio()
+    {
+        System.out.print("Ingrese el nombre del directorio: ");
+        String nombreDirectorio = entrada.nextLine();
+        if (nombreDirectorio.length() == 0)
+        {
+            System.out.println("Debe ingresar un nombre para el directoiro");
+            return;
+        }else{
+            //myFileSystem.crearDirectorio(nombreDirectorio);
+        }
+    }
+    
+    public void pedirDatosCambiarDirectorio()
+    {
+        System.out.print("Ingrese el directorio al que quiere moverse: ");
+        String nombreDirectorio = entrada.nextLine();
+        if (nombreDirectorio.length() == 0)
+        {
+            System.out.println("Debe ingresar un nombre de directorio");
+            return;
+        }else{
+            //myFileSystem.cambiarDirectorio(nombreDirectorio);
+        }
+    }
+    
+    public void listarDatosDirectorio()
+    {
+        //myFileSystem.listarDirectorioActual();
+    }
+    
+    public void modificarContenidoArchivo()
+    {
+        System.out.print("Ingrese el nombre del archivo a modificar: ");
+        String nombreArchivo = entrada.nextLine();
+        /*Archivo archivo = myFileSystem.getArchivo(nombreArchivo);
+        System.out.println(archivo.texto);
+        System.out.print("Ingrese el nuevo texto");
+        String nuevoTexto = entrada.nextLine();
+        archivo.texto = nuevoTexto;
+        myFileSystem.actualizarArchivo(archivo)
+        */
+    }
+    
+    public void verPropiedadesDeArchivo()
+    {
+        System.out.print("Ingrese el nombre del archivo: ");
+        /*Archivo archivo = myFileSystem.getArchivo(nombreArchivo);
+        archivo.printPropiedades();
+        */
+    }
+    
+    public void verContenidoArchivo()
+    {
+        System.out.print("Ingrese el nombre del archivo");
+        String nombreArchivo = entrada.nextLine();
+        /*Archivo archivo = myFileSystem.getArchivo(nombreArchivo);
+        String texto = arhchivo.getTexto();
+        System.out.println(texto);
+        */
+    }
+    
+    public void copiarArchivo()
+    {
+        System.out.print("Ingrese la ruta del archivo a ser copiado: ");
+        String rutaInicio = entrada.nextLine();
+        System.out.print("Ingrese la ruta donde se desea copiar: ");
+        String rutaFin = entrada.nextLine();
+        
+        if (rutaInicio.length() == 0 || rutaFin.length() == 0)
+        {
+            System.out.println("Debe ingresar los datos solicitados");
+        }else{
+            //myFileSystem.copiarArchivo(rutaInicio, rutafin);
+        }
+    }
+    
+    public void moverArchivo()
+    {
+        System.out.print("Ingrese la ruta del archivo o directorio a ser movido: ");
+        String rutaInicio = entrada.nextLine();
+        System.out.print("Ingrese la ruta donde se desea mover: ");
+        String rutaFin = entrada.nextLine();
+        
+        if (rutaInicio.length() == 0 || rutaFin.length() == 0)
+        {
+            System.out.println("Debe ingresar los datos solicitados");
+        }else{
+            /*if (myFileSystem.esArchivo(nombre)
+            {
+                myFileSystem.moverArchivo(rutaInicio, rutaFin);
+            }else if (myFileSystem.esDirectorio(rutaInicio, rutaFin)
+            {
+                myFileSystem.moverDirectorio(nombre
+            }
+            */
+        }
+    }
+    
+    
+    
     
     public void esperarComandos()
     {
@@ -81,6 +210,42 @@ public class FileSystem {
             {
                 case "CRT":
                     pedirDatosDisco();
+                    break;
+                    
+                case "FLE":
+                    pedirDatosCrearArchivo();
+                    break;
+                    
+                case "MKDIR":
+                    pedirDatosCrearDirectorio();
+                    break;
+                    
+                case "CHDIR":
+                    pedirDatosCambiarDirectorio();
+                    break;
+                    
+                case "LDIR":
+                    listarDatosDirectorio();
+                    break;
+                   
+                case "MFLE":
+                    modificarContenidoArchivo();
+                    break;
+                    
+                case "PPT":
+                    verPropiedadesDeArchivo();
+                    break;
+                
+                case "VIEW":
+                    verContenidoArchivo();
+                    break;
+                 
+                case "CPY":
+                    copiarArchivo();
+                    break;
+                    
+                case "MOV":
+                    moverArchivo();
             }
         }
     }
@@ -88,7 +253,6 @@ public class FileSystem {
     public static void main(String[] args) {
         //vacios = new LinkedList();
         //ocupados = new LinkedList();
-        myFileSystem = new SystemaDeArchivo();
         
         FileSystem instancia = new FileSystem();
         instancia.esperarComandos();
