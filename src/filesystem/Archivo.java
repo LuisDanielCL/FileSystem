@@ -12,7 +12,7 @@ import java.util.Date;
 public class Archivo extends ArchivoMaestro {
     //int id;
     ArrayList ubicacion = new ArrayList();
-    int tamano;
+    //int tamano;
     String fechaCreacion;
     String ultimaModificacion;
     String datos; 
@@ -38,14 +38,14 @@ public class Archivo extends ArchivoMaestro {
         this.ubicacion.add(ubicacion);
     }
     
-    public int getTamano() {
+    /*public int getTamano() {
         return this.tamano;
     }
     
     public void setTamano(int tamano){
         this.tamano = tamano;
     }
-    
+    */
     public String getDatos() {
         return this.datos;
     }
@@ -53,4 +53,12 @@ public class Archivo extends ArchivoMaestro {
     public void setDatos(String datos) {
         this.datos = datos;
     }
+    
+    public String verPropiedades(){
+        String propiedadesA;
+        propiedadesA = "Nombre: " + nombre + "\n" + "Extension: " + tipo + "\n" +
+                "Fecha de creacion: " + fechaCreacion + "\n" + "Ultima modificacion: " + 
+                ultimaModificacion + "\n" + "Tamaño: " + datos.length() + "\n";
+        return propiedadesA;
+    }    
 }

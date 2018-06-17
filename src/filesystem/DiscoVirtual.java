@@ -113,7 +113,9 @@ public class DiscoVirtual {
         }
         return sectoresArchivo;
     }
-    public void vaciarSectores(){
-        //proximamente
+    public void vaciarSectores(ArrayList sectoresA){
+        for(int i = 0; i < sectoresA.size() ; i++ ){
+            sector.set((int) sectoresA.get(i), 0);
+        }
     }
 }
