@@ -83,7 +83,7 @@ public class Directorio extends ArchivoMaestro {
             directorios.get(i).printDir("-"+profundidad);
         }
         for (int i = 0; i < archivos.size(); i++) {
-            System.out.print(profundidad + archivos.get(i).nombre +"."+tipo+ "\n");         
+            System.out.print(profundidad + archivos.get(i).nombre +"."+archivos.get(i).tipo+ "\n");         
         }
     }
     
@@ -92,21 +92,29 @@ public class Directorio extends ArchivoMaestro {
             System.out.print("DIR---"+directorios.get(i).nombre + "\n");   
         }
         for (int i = 0; i < archivos.size(); i++) {
-            System.out.print("FILE---"+archivos.get(i).nombre +"."+tipo+ "\n");         
+            System.out.print("FILE---"+archivos.get(i).nombre +"."+archivos.get(i).tipo+ "\n");         
         }
     }
     
     
 
-    public boolean agregarArchivo(String datos, String nombreArchivo, String tipo){
+    public boolean agregarArchivo(String datos, String nombreArchivo, String tipo,
+            DiscoVirtual disco){
         for (int i = 0; i < archivos.size(); i++) {
             if(archivos.get(i).nombre.equals(nombreArchivo)){
                 System.out.print("El archivo ya existe.");
                 return false;
             }
         }
-        Archivo nuevoArchivo = new Archivo(datos, nombreArchivo, tipo);
+        int sectoresRequeridos = (int) Math.ceil(datos.length() / disco.getTamSector());
+        if (sectoresRequeridos >= disco.sectoresDisponibles()){
+            System.out.println("No hay espacio en disco para crear ese archivo");
+            return false;
+        }
+        ArrayList ubicacion = disco.llenarSectores(datos.length());
+        Archivo nuevoArchivo = new Archivo(datos, nombreArchivo, tipo,ubicacion);
         archivos.add(nuevoArchivo);
+        disco.crearRespaldo();
         return true;
     }
     
