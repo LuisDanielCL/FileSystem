@@ -58,7 +58,8 @@ public class Archivo extends ArchivoMaestro {
         String propiedadesA;
         propiedadesA = "Nombre: " + nombre + "\n" + "Extension: " + tipo + "\n" +
                 "Fecha de creacion: " + fechaCreacion + "\n" + "Ultima modificacion: " + 
-                ultimaModificacion + "\n" + "Tamaño: " + datos.length() + "\n";
+                ultimaModificacion + "\n" + "Tamaño: " + datos.length() + "bytes" +"\n";
+                System.out.println(propiedadesA);
         return propiedadesA;
     }    
     
