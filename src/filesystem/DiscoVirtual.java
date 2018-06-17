@@ -87,7 +87,7 @@ public class DiscoVirtual {
         }
     }
     
-    public void llenarSectores(int tamano, LinkedList sectores, LinkedList vacios){
+    public void llenarSectores(int tamano, LinkedList sectores){
         
     }
     public void vaciarSectores(){
