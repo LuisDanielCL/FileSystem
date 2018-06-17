@@ -22,6 +22,7 @@ public class DiscoVirtual {
         tamSector = pTamSector;
         numSectores = pNumSectores ;
         sector = new ArrayList<Integer>(Collections.nCopies(numSectores, 0));
+
         
     }
     
