@@ -47,6 +47,7 @@ public class Archivo extends ArchivoMaestro {
     }
     */
     public String getDatos() {
+        System.out.println(datos);
         return this.datos;
     }
     

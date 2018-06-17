@@ -203,7 +203,7 @@ public class FileSystem {
         */
     }
     
-    public void verContenidoArchivo()
+    public void verContenidoArchivo(DiscoVirtual discoVirtual)
     {
         if (discoCreado == false)
         {
@@ -211,8 +211,14 @@ public class FileSystem {
             return;
         }
         
-        System.out.print("Ingrese el nombre del archivo");
+        System.out.print("Ingrese el nombre del archivo: ");
         String nombreArchivo = entrada.nextLine();
+        if (nombreArchivo.length() == 0)
+        {
+            System.out.println("Debe ingresar un nombre para el archivo");
+            return;
+        }
+        myFileSystem.contenidoArchivo(nombreArchivo, discoVirtual);
         /*Archivo archivo = myFileSystem.getArchivo(nombreArchivo);
         String texto = arhchivo.getTexto();
         System.out.println(texto);
@@ -356,7 +362,7 @@ public class FileSystem {
                     break;
                 
                 case "VIEW":
-                    verContenidoArchivo();
+                    verContenidoArchivo(discoVirtual);
                     break;
                  
                 case "CPY":

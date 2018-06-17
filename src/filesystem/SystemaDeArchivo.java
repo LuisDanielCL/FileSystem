@@ -87,4 +87,9 @@ public class SystemaDeArchivo {
         dirActual.propiedadesArchivo(nombreArchivo, disco);
 
     }
+    
+    void contenidoArchivo(String nombreArchivo, DiscoVirtual disco){
+        dirActual.contenidoArchivo(nombreArchivo, disco);
+
+    }
 }
