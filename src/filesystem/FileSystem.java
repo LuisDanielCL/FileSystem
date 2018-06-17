@@ -282,10 +282,13 @@ public class FileSystem {
         {
             System.out.println("Debe ingresar un nombre");
         }else{
-            String[] nombreList = nombre.split(".", 2);
+            String[] nombreList = nombre.split("\\.", 2);
             if(nombreList.length>1){
-                if(nombreList[1].toUpperCase().equals("txt"));
-                myFileSystem.eliminarArchivo(nombre);
+                if(nombreList[1].toUpperCase().equals("TXT")){
+                    myFileSystem.eliminarArchivo(nombreList[0],discoVirtual);
+                }
+            }else{
+                myFileSystem.eliminarDirectorio(nombre,discoVirtual);
             }
             
 

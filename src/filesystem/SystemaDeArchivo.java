@@ -79,12 +79,16 @@ public class SystemaDeArchivo {
     }
 
 
-    void eliminarArchivo(String nombre) {
-        dirActual.elimiarArchivo(nombre);
+    void eliminarArchivo(String nombre, DiscoVirtual disco) {
+        dirActual.elimiarArchivo(nombre, disco);
     }
     
     void propiedadesArchivo(String nombreArchivo, DiscoVirtual disco){
         dirActual.propiedadesArchivo(nombreArchivo, disco);
 
+    }
+
+    void eliminarDirectorio(String nombre, DiscoVirtual discoVirtual) {
+        dirActual.elimiarDirectorio(nombre, discoVirtual);
     }
 }
