@@ -17,7 +17,7 @@ public class Archivo extends ArchivoMaestro {
     String ultimaModificacion;
     String datos; 
     
-    public Archivo(String pDatos,String pNombre, String pTipo){
+    public Archivo(String pDatos,String pNombre, String pTipo, ArrayList pUbicacion){
         LocalDateTime now = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         fechaCreacion = now.format(formatter);
@@ -26,8 +26,8 @@ public class Archivo extends ArchivoMaestro {
         datos = pDatos;
         nombre = pNombre;
         tipo = pTipo;
-        
-        
+        ubicacion = (ArrayList) pUbicacion.clone();
+               
     }
 
     public ArrayList getUbicacion() {
