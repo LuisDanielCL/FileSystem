@@ -134,7 +134,7 @@ public class FileSystem {
             System.out.println("Debe ingresar un nombre de directorio");
             return;
         }else{
-            //myFileSystem.cambiarDirectorio(nombreDirectorio);
+            myFileSystem.cambiarDirectorio(nombreDirectorio);
         }
     }
     
@@ -299,6 +299,13 @@ public class FileSystem {
         
         while (continuar)
         {
+            if(discoCreado){
+                System.out.print(myFileSystem.getRuta()+">");
+            }else{
+                System.out.print(">");
+                
+            }
+            
             String comando = entrada.nextLine();
             switch (comando)
             {
@@ -372,6 +379,7 @@ public class FileSystem {
                             +"MOV (Mover archivos o directorios)\n"
                             + "REM (Remover archivos o directorios\n"
                             + "TREE (Mostrar estructura logical de FS)\n"
+                            + "BACK (Volver al directorio previo)\n"
                             + "EXIT (Salir del programa)\n";
                     System.out.println(comandos);
                     break;

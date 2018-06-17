@@ -1,7 +1,6 @@
 package filesystem;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -12,25 +11,38 @@ public class Directorio extends ArchivoMaestro {
     List<Archivo> archivos = new ArrayList<>();
     List<Directorio> directorios = new ArrayList<>();
     Directorio directorioAnterior;
-    
+    String ruta;
     public Directorio(String nombre){
         this.nombre = nombre;
+        ruta = nombre;
         directorioAnterior = null;
     }
 
     public Directorio(String nombre, Directorio dirAnterior){
         this.nombre = nombre;
+        ruta =dirAnterior.ruta+"/"+nombre;
         directorioAnterior = dirAnterior;
     }
-
-    public boolean agregarDirectorio(String nombreArchivo){
+    
+    public Directorio moverseA(String nuevaDir){
         for (int i = 0; i < directorios.size(); i++) {
-            if(directorios.get(i).nombre.equals(nombreArchivo)){
+            if(directorios.get(i).nombre.equals(nuevaDir)){
+                return directorios.get(i);
+            }
+        }
+        System.out.print("No se encontro el directorio especificado.");
+        return this;
+    }
+
+    public boolean agregarDirectorio(String nombreDirectorio){
+        System.out.print(nombre+":");
+        for (int i = 0; i < directorios.size(); i++) {
+            if(directorios.get(i).nombre.equals(nombreDirectorio)){
                 System.out.print("El directorio ya existe.");
                 return false;
             }
         }
-        Directorio nuevoDir = new Directorio(nombreArchivo);
+        Directorio nuevoDir = new Directorio(nombreDirectorio,this);
         directorios.add(nuevoDir);
         
         return true;
@@ -42,6 +54,7 @@ public class Directorio extends ArchivoMaestro {
             
         }
     }
+    
     /*
     public boolean agregarArchivo(Archivo a){
         for(int i = 0; i < contenido.size(); i++) {
@@ -139,4 +152,8 @@ public class Directorio extends ArchivoMaestro {
         }
     }
     */
+
+
+
+
 }

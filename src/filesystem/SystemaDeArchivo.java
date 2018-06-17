@@ -56,4 +56,13 @@ public class SystemaDeArchivo {
     void mostrarEstructuraActual() {
         dirActual.printDir();
     }
+
+    void cambiarDirectorio(String nombreDirectorio) {
+        dirActual = dirActual.moverseA(nombreDirectorio);
+    }
+
+    String getRuta() {
+        
+        return dirActual.ruta;
+    }
 }
