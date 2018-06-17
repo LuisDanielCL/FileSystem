@@ -3,6 +3,7 @@ package filesystem;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -102,7 +103,7 @@ public class Directorio extends ArchivoMaestro {
             DiscoVirtual disco){
         for (int i = 0; i < archivos.size(); i++) {
             if(archivos.get(i).nombre.equals(nombreArchivo)){
-                System.out.print("El archivo ya existe.");
+                System.out.println("El archivo ya existe.");
                 return false;
             }
         }
@@ -141,6 +142,7 @@ public class Directorio extends ArchivoMaestro {
                 return;
             }
         }
+       System.out.println("No se encontro el directorio."); 
     }
     
     private void eliminarRecursivo(int pos, DiscoVirtual disco){
@@ -163,7 +165,7 @@ public class Directorio extends ArchivoMaestro {
                 return true;
             }
         }
-        System.out.print("El archivo no fue encontrado.");
+        System.out.println("El archivo no fue encontrado.");
         return false;
     }
     
