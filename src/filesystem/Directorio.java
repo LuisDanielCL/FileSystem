@@ -57,7 +57,7 @@ public class Directorio extends ArchivoMaestro {
     
         public void printArc(){
         for (int i = 0; i < archivos.size(); i++) {
-            System.out.print(archivos.get(i).nombre + "\n");
+            System.out.print(archivos.get(i).nombre +"."+tipo+ "\n");
             
         }
     }
