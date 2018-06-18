@@ -108,7 +108,7 @@ public class Directorio extends ArchivoMaestro {
             }
         }
         int sectoresRequeridos = (int) Math.ceil(datos.length() / disco.getTamSector());
-        if (sectoresRequeridos >= disco.sectoresDisponibles()){
+        if (sectoresRequeridos > disco.sectoresDisponibles()){
             System.out.println("No hay espacio en disco para crear ese archivo");
             return false;
         }
@@ -182,5 +182,49 @@ public class Directorio extends ArchivoMaestro {
         System.out.print("El archivo no fue encontrado.");
         return false;
     }
+     public boolean cambiarContenidoArchivo(String nombreArchivo, DiscoVirtual disco, String nuevoContenido){
+        for (int i = 0; i < archivos.size(); i++) {
+            if(archivos.get(i).nombre.equals(nombreArchivo)){
+                
+                int sectoresOcupados = archivos.get(i).ubicacion.size();
+                int sectoresRequeridos = (int) Math.ceil(nuevoContenido.length() / disco.getTamSector());
+                
+                if (sectoresRequeridos > disco.sectoresDisponibles() + sectoresOcupados ){
+                    System.out.println("No hay espacio en disco para modificar ese archivo");
+                        return false;
+                }
+                
+                if(sectoresOcupados == sectoresRequeridos){
+                    disco.mismoSectores(archivos.get(i).ubicacion, nuevoContenido.length());
+                    archivos.get(i).setDatos(nuevoContenido);
+                    disco.crearRespaldo();
+                    System.out.println("Archivo " + nombreArchivo + " modificado con exito");
+                    return true;  
+                }
+                
+                if(sectoresOcupados < sectoresRequeridos){
+                    ArrayList ubicacion = disco.masSectores(archivos.get(i).ubicacion, nuevoContenido.length());
+                    archivos.get(i).setDatos(nuevoContenido);
+                    archivos.get(i).setUbicacion(ubicacion);
+                    disco.crearRespaldo();
+                    System.out.println("Archivo " + nombreArchivo + " modificado con exito");
+                    return true;
+                    
+                }
 
+                if(sectoresOcupados > sectoresRequeridos){
+                    ArrayList ubicacion = disco.menosSectores(archivos.get(i).ubicacion, nuevoContenido.length());
+                    archivos.get(i).setDatos(nuevoContenido);
+                    archivos.get(i).setUbicacion(ubicacion);
+                    disco.crearRespaldo();
+                    System.out.println("Archivo " + nombreArchivo + " modificado con exito");
+                    return true;
+                    
+                }
+            }
+        }
+        System.out.print("El archivo no fue encontrado.");
+        return false;
+    }
+    
 }

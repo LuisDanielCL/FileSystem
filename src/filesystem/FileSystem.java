@@ -166,7 +166,7 @@ public class FileSystem {
         myFileSystem.listarDirectorioActual();
     }
     
-    public void modificarContenidoArchivo()
+    public void modificarContenidoArchivo(DiscoVirtual discoVirtual)
     {
         Scanner entrada = new Scanner(System.in);
         if (discoCreado == false)
@@ -182,6 +182,13 @@ public class FileSystem {
             System.out.println("Debe ingresar un nombre para el archivo");
             return;
         }
+        
+        System.out.print("Ingrese el nombre del archivo a modificar: ");
+        String nuevoContenido = entrada.nextLine();
+        
+        myFileSystem.cambiarContenidoArchivo(nombreArchivo, discoVirtual, nuevoContenido);
+        
+        
         /*Archivo archivo = myFileSystem.getArchivo(nombreArchivo);
         System.out.println(archivo.texto);
         System.out.print("Ingrese el nuevo texto");
@@ -371,7 +378,7 @@ public class FileSystem {
                     break;
                    
                 case "MFLE":
-                    modificarContenidoArchivo();
+                    modificarContenidoArchivo(discoVirtual);
                     break;
                     
                 case "PPT":

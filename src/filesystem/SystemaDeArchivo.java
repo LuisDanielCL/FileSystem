@@ -87,6 +87,10 @@ public class SystemaDeArchivo {
         dirActual.propiedadesArchivo(nombreArchivo, disco);
 
     }
+    
+    void cambiarContenidoArchivo(String nombreArchivo, DiscoVirtual disco, String nuevoContenido){
+        dirActual.cambiarContenidoArchivo(nombreArchivo, disco, nuevoContenido);
+    }
 
     void eliminarDirectorio(String nombre, DiscoVirtual discoVirtual) {
         dirActual.elimiarDirectorio(nombre, discoVirtual);
