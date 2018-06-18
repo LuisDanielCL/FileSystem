@@ -17,13 +17,11 @@ public class Directorio extends ArchivoMaestro {
     Scanner entrada = new Scanner(System.in);
     public Directorio(String nombre){
         this.nombre = nombre;
-        ruta = nombre;
         directorioAnterior = null;
     }
 
     public Directorio(String nombre, Directorio dirAnterior){
         this.nombre = nombre;
-        ruta =dirAnterior.ruta+"/"+nombre;
         directorioAnterior = dirAnterior;
     }
     
@@ -49,7 +47,7 @@ public class Directorio extends ArchivoMaestro {
         return directorioAnterior;
     }
 
-    public boolean agregarDirectorio(String nombreDirectorio){
+    public boolean agregarDirectorio(String nombreDirectorio, DiscoVirtual disco){
         for (int i = 0; i < directorios.size(); i++) {
             if(directorios.get(i).nombre.equals(nombreDirectorio)){
                 System.out.print("El directorio ya existe, desea remplazarlo(S/N):");
@@ -57,10 +55,8 @@ public class Directorio extends ArchivoMaestro {
                 switch (opcion.toUpperCase()){
                 case "S":
                     System.out.println("Se remplaza");
-                    //Eliminar()
-                    //eliminar el return y dejar brake
-                    return false;
-                    //break;
+                    elimiarDirectorio(nombreDirectorio, disco);
+                    break;
                     
                 case "N":
                     System.out.println("Se mantiene");
@@ -104,8 +100,21 @@ public class Directorio extends ArchivoMaestro {
             DiscoVirtual disco){
         for (int i = 0; i < archivos.size(); i++) {
             if(archivos.get(i).nombre.equals(nombreArchivo)){
-                System.out.println("El archivo ya existe.");
-                return false;
+                System.out.println("El archivo ya existe, desea remplazarlo(S/N):");
+                String opcion = entrada.nextLine();
+                switch (opcion.toUpperCase()){
+                case "S":
+                    System.out.println("Se remplaza");
+                    elimiarArchivo(nombreArchivo, disco);
+                    break;
+                    
+                case "N":
+                    System.out.println("Se mantiene");
+                    return false;
+                default:
+                    System.out.println("Comando invalido");
+                    return false;
+                }
             }
         }
         int sectoresRequeridos = (int) Math.ceil(datos.length() / disco.getTamSector());
@@ -248,6 +257,7 @@ public class Directorio extends ArchivoMaestro {
                               
                 }else{
                     System.out.println("La ruta especificada no se encontro.");
+                    return;
                 }
             }
         }
@@ -261,6 +271,40 @@ public class Directorio extends ArchivoMaestro {
             }
         }
         return true;
+    }
+    
+    private boolean revisarNombreDisponibleDir(String nuevoNombre){
+        for(int i = 0; i< directorios.size();i++){
+            if(directorios.get(i).nombre.equals(nuevoNombre)){
+                return false;
+            }
+        }
+        return true;
+    }
+    
+    void moverDirectorio(String nombreDirectorio, String nuevaRuta, String nuevoNombre,
+            Directorio raiz,DiscoVirtual discoVirtual) {
+        for (int i = 0; i < directorios.size(); i++) {
+            if(directorios.get(i).nombre.equals(nombreDirectorio)){
+                Directorio directorioAgregar = getDirectorio(nuevaRuta,raiz);
+                if (directorioAgregar != null){
+                    if(directorioAgregar.revisarNombreDisponibleDir(nuevoNombre)){
+                        directorios.get(i).nombre = nuevoNombre;
+                        directorioAgregar.directorios.add(directorios.get(i));
+                        directorios.remove(i);
+                        return;     
+                    }else{
+                        System.out.println("Ya existe un directorio con ese nombre.");
+                        return;
+                    }
+                              
+                }else{
+                    System.out.println("La ruta especificada no se encontro.");
+                    return;
+                }
+            }
+        }
+        System.out.println("El directorio no fue encontrado.");
     }
     
     private Directorio getDirectorio(String nuevaRuta, Directorio raiz){
@@ -289,5 +333,27 @@ public class Directorio extends ArchivoMaestro {
         return null;
 
     }
+
+    String getRuta() {
+        if(directorioAnterior == null){
+            return nombre;
+        }else{
+            return directorioAnterior.getRuta() + "/"+nombre;
+        }
+    }
     
+    
+    void buscarDocumentos(String nombre){
+        for(int i=0;i<directorios.size();i++){
+            if(directorios.get(i).nombre.equals(nombre)){
+                System.out.println(nombre+"  |"+getRuta());
+            }
+            directorios.get(i).buscarDocumentos(nombre);
+        }
+        for(int i=0;i<archivos.size();i++){
+            if(archivos.get(i).nombre.equals(nombre)){
+                System.out.println(nombre+".txt  |"+getRuta());
+            }
+        }
+    }
 }

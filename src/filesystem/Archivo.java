@@ -34,8 +34,8 @@ public class Archivo extends ArchivoMaestro {
         return this.ubicacion;
     }
     
-    public void setUbicacion(ArrayList ubicacion) {
-        this.ubicacion.add(ubicacion);
+    public void setUbicacion(ArrayList pUbicacion) {
+        this.ubicacion = pUbicacion;
     }
     
     /*public int getTamano() {

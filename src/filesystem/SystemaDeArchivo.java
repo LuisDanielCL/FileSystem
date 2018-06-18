@@ -2,6 +2,7 @@
 package filesystem;
 
 import java.util.LinkedList;
+import java.util.Scanner;
 
 /**
  *
@@ -49,12 +50,12 @@ public class SystemaDeArchivo {
         this.rutaA = rutaA + "\\" + ruta;
     }
 
-    void crearDirectorio(String nombreDirectorio) {
-        dirActual.agregarDirectorio(nombreDirectorio);
+    void crearDirectorio(String nombreDirectorio, DiscoVirtual disco) {
+        dirActual.agregarDirectorio(nombreDirectorio, disco);
     }
 
     void mostrarEstructuraActual() {
-        dirActual.printDir("");
+        volumen.printDir("");
     }
 
     void cambiarDirectorio(String nombreDirectorio) {
@@ -62,8 +63,7 @@ public class SystemaDeArchivo {
     }
 
     String getRuta() {
-        
-        return dirActual.ruta;
+        return dirActual.getRuta();
     }
 
     void volverAtras() {
@@ -103,7 +103,7 @@ public class SystemaDeArchivo {
     }
 
     void moverDirectorio(String nombreArchivo, String nuevaRuta, String nuevoNombre, DiscoVirtual discoVirtual) {
-        
+        dirActual.moverDirectorio(nombreArchivo, nuevaRuta, nuevoNombre, volumen, discoVirtual);
 
     }
     
@@ -112,5 +112,9 @@ public class SystemaDeArchivo {
     void moverArchivo(String nombreArchivo, String nuevaRuta, String nuevoNombre, DiscoVirtual discoVirtual) {
                 dirActual.moverArchivo(nombreArchivo, nuevaRuta, nuevoNombre, 
                 volumen, discoVirtual);
+    }
+
+    void buscarDocumento(String nombre) {
+        volumen.buscarDocumentos(nombre);
     }
 }
