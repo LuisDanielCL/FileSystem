@@ -74,6 +74,7 @@ public class Directorio extends ArchivoMaestro {
         }
         Directorio nuevoDir = new Directorio(nombreDirectorio,this);
         directorios.add(nuevoDir);
+        System.out.println("directorio " + nombreDirectorio + " creado con exito");
         
         return true;
     }
@@ -116,6 +117,7 @@ public class Directorio extends ArchivoMaestro {
         Archivo nuevoArchivo = new Archivo(datos, nombreArchivo, tipo,ubicacion);
         archivos.add(nuevoArchivo);
         disco.crearRespaldo();
+        System.out.println("Archivo " + nombreArchivo + "." + tipo + " creado con exito");
         return true;
     }
 
