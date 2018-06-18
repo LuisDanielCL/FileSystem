@@ -318,11 +318,6 @@ public class FileSystem {
             return;
         }
         
-        //myFileSystem.mostrarEstructuraVolumen();
-    }
-    
-    
-    private void mostrarEstructuraActual() {
         myFileSystem.mostrarEstructuraActual();
     }
     
@@ -391,10 +386,6 @@ public class FileSystem {
                 
                 case "TREE":
                     mostrarEstructuraVolumen();
-                    break;
-                    
-                case "TREET":
-                    mostrarEstructuraActual();
                     break;
                     
                 case "BACK":
