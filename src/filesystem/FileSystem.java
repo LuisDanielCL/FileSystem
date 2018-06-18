@@ -92,7 +92,7 @@ public class FileSystem {
             return;
         }
         
-        System.out.println("Ingrese la extension del archivo");
+        System.out.print("Ingrese la extension del archivo");
         String extension = entrada.nextLine();
         if (extension.equals("TXT") || extension.equals("txt"))
         {
