@@ -47,7 +47,7 @@ public class Directorio extends ArchivoMaestro {
         return directorioAnterior;
     }
 
-    public boolean agregarDirectorio(String nombreDirectorio){
+    public boolean agregarDirectorio(String nombreDirectorio, DiscoVirtual disco){
         for (int i = 0; i < directorios.size(); i++) {
             if(directorios.get(i).nombre.equals(nombreDirectorio)){
                 System.out.print("El directorio ya existe, desea remplazarlo(S/N):");
@@ -55,10 +55,8 @@ public class Directorio extends ArchivoMaestro {
                 switch (opcion.toUpperCase()){
                 case "S":
                     System.out.println("Se remplaza");
-                    //Eliminar()
-                    //eliminar el return y dejar brake
-                    return false;
-                    //break;
+                    elimiarDirectorio(nombreDirectorio, disco);
+                    break;
                     
                 case "N":
                     System.out.println("Se mantiene");
@@ -102,8 +100,21 @@ public class Directorio extends ArchivoMaestro {
             DiscoVirtual disco){
         for (int i = 0; i < archivos.size(); i++) {
             if(archivos.get(i).nombre.equals(nombreArchivo)){
-                System.out.println("El archivo ya existe.");
-                return false;
+                System.out.println("El archivo ya existe, desea remplazarlo(S/N):");
+                String opcion = entrada.nextLine();
+                switch (opcion.toUpperCase()){
+                case "S":
+                    System.out.println("Se remplaza");
+                    elimiarArchivo(nombreArchivo, disco);
+                    break;
+                    
+                case "N":
+                    System.out.println("Se mantiene");
+                    return false;
+                default:
+                    System.out.println("Comando invalido");
+                    return false;
+                }
             }
         }
         int sectoresRequeridos = (int) Math.ceil(datos.length() / disco.getTamSector());
@@ -331,4 +342,18 @@ public class Directorio extends ArchivoMaestro {
         }
     }
     
+    
+    void buscarDocumentos(String nombre){
+        for(int i=0;i<directorios.size();i++){
+            if(directorios.get(i).nombre.equals(nombre)){
+                System.out.println(nombre+"  |"+getRuta());
+            }
+            directorios.get(i).buscarDocumentos(nombre);
+        }
+        for(int i=0;i<archivos.size();i++){
+            if(archivos.get(i).nombre.equals(nombre)){
+                System.out.println(nombre+".txt  |"+getRuta());
+            }
+        }
+    }
 }

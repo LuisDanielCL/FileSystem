@@ -121,7 +121,7 @@ public class FileSystem {
             System.out.println("Debe ingresar un nombre para el directoiro");
             return;
         }else{
-            myFileSystem.crearDirectorio(nombreDirectorio);
+            myFileSystem.crearDirectorio(nombreDirectorio,discoVirtual);
         }
     }
     
@@ -336,6 +336,23 @@ public class FileSystem {
         myFileSystem.mostrarEstructuraActual();
     }
     
+    public void buscarDocumento()
+    {
+        Scanner entrada = new Scanner(System.in);
+        if (discoCreado == false)
+        {
+            System.out.println("Disco virtual no creado");
+            return;
+        }
+        System.out.print("Ingrese el nombre a buscar: ");
+        String nombre = entrada.nextLine();
+        if (nombre.length() == 0)
+        {
+            System.out.println("Debe ingresar un nombre");
+        }else{
+            myFileSystem.buscarDocumento(nombre);
+        }
+    }
     
     public void esperarComandos()
     {
@@ -405,6 +422,10 @@ public class FileSystem {
                     
                 case "BACK":
                     volverAtras();
+                    break;
+                                    
+                case "FIND":
+                    buscarDocumento();
                     break;
                  
                 case "EXIT":
