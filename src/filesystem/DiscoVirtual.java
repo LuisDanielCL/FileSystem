@@ -103,15 +103,54 @@ public class DiscoVirtual {
         for(int i = 0; i < sector.size() ; i++ ){
             if (sector.get(i) == 0){
                 sectoresArchivo.add(i);
-                sector.set(i,tamano);
                 if(tamano <= tamSector){
+                    sector.set(i,tamano);
                     return sectoresArchivo;
                 }
+                sector.set(i,tamSector);
                 tamano -= tamSector;
             }
         }
         return sectoresArchivo;
     }
+    
+    public ArrayList masSectores(ArrayList sectores, int nuevoTama){
+        ArrayList sectoresArchivo = new ArrayList();
+        int dif = (sectores.size() * tamSector) - nuevoTama;
+        sector.set((int) sectores.get(sectores.size() -1 ), tamSector);
+        llenarSectores(dif);
+        //ArrayList ubicacion = disco.llenarSectores(datos.length());
+        sectoresArchivo.addAll(sectores);
+        sectoresArchivo.addAll(llenarSectores(dif));
+        return sectoresArchivo;
+    }
+    
+    public ArrayList menosSectores(ArrayList sectores, int nuevoTama){
+        ArrayList sectoresArchivo = new ArrayList();
+        for(int i = 0; i < sectores.size() ; i++ ){
+            if(nuevoTama <= 0){
+                sector.set((int) sectores.get(i), 0);
+            }else{
+                if(tamSector <= nuevoTama){
+                    sector.set((int) sectores.get(i), tamSector);
+                    sectoresArchivo.add(sectores.get(i));
+                    nuevoTama -= tamSector;
+                }
+                sector.set((int) sectores.get(i), nuevoTama);
+                sectoresArchivo.add(sectores.get(i));
+                nuevoTama -= tamSector;
+            }  
+        }     
+        return sectoresArchivo;
+    }
+    
+    public void mismoSectores(ArrayList sectores, int nuevoTama){
+        //ArrayList sectoresArchivo = new ArrayList();
+        sector.set((int) sectores.get(sectores.size() -1 ), nuevoTama % tamSector);
+        
+        //return sectoresArchivo;
+    }
+    
     public void vaciarSectores(ArrayList sectoresA){
         for(int i = 0; i < sectoresA.size() ; i++ ){
             sector.set((int) sectoresA.get(i), 0);

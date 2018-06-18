@@ -177,6 +177,11 @@ public class FileSystem {
         
         System.out.print("Ingrese el nombre del archivo a modificar: ");
         String nombreArchivo = entrada.nextLine();
+        if (nombreArchivo.length() == 0)
+        {
+            System.out.println("Debe ingresar un nombre para el archivo");
+            return;
+        }
         /*Archivo archivo = myFileSystem.getArchivo(nombreArchivo);
         System.out.println(archivo.texto);
         System.out.print("Ingrese el nuevo texto");
