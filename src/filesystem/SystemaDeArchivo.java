@@ -54,7 +54,7 @@ public class SystemaDeArchivo {
     }
 
     void mostrarEstructuraActual() {
-        dirActual.printDir("");
+        volumen.printDir("");
     }
 
     void cambiarDirectorio(String nombreDirectorio) {
@@ -62,8 +62,7 @@ public class SystemaDeArchivo {
     }
 
     String getRuta() {
-        
-        return dirActual.ruta;
+        return dirActual.getRuta();
     }
 
     void volverAtras() {
@@ -99,7 +98,7 @@ public class SystemaDeArchivo {
     }
 
     void moverDirectorio(String nombreArchivo, String nuevaRuta, String nuevoNombre, DiscoVirtual discoVirtual) {
-        
+        dirActual.moverDirectorio(nombreArchivo, nuevaRuta, nuevoNombre, volumen, discoVirtual);
 
     }
     

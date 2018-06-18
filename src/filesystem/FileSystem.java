@@ -289,14 +289,6 @@ public class FileSystem {
                 myFileSystem.moverDirectorio(nombreArchivo,nuevaRuta,
                             nuevoNombre,discoVirtual);
             }
-            /*if (myFileSystem.esArchivo(nombre)
-            {
-                myFileSystem.moverArchivo(rutaInicio, rutaFin);
-            }else if (myFileSystem.esDirectorio(rutaInicio, rutaFin)
-            {
-                myFileSystem.moverDirectorio(nombre
-            }
-            */
         }
     }
     

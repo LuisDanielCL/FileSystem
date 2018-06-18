@@ -17,13 +17,11 @@ public class Directorio extends ArchivoMaestro {
     Scanner entrada = new Scanner(System.in);
     public Directorio(String nombre){
         this.nombre = nombre;
-        ruta = nombre;
         directorioAnterior = null;
     }
 
     public Directorio(String nombre, Directorio dirAnterior){
         this.nombre = nombre;
-        ruta =dirAnterior.ruta+"/"+nombre;
         directorioAnterior = dirAnterior;
     }
     
@@ -203,6 +201,7 @@ public class Directorio extends ArchivoMaestro {
                               
                 }else{
                     System.out.println("La ruta especificada no se encontro.");
+                    return;
                 }
             }
         }
@@ -216,6 +215,40 @@ public class Directorio extends ArchivoMaestro {
             }
         }
         return true;
+    }
+    
+    private boolean revisarNombreDisponibleDir(String nuevoNombre){
+        for(int i = 0; i< directorios.size();i++){
+            if(directorios.get(i).nombre.equals(nuevoNombre)){
+                return false;
+            }
+        }
+        return true;
+    }
+    
+    void moverDirectorio(String nombreDirectorio, String nuevaRuta, String nuevoNombre,
+            Directorio raiz,DiscoVirtual discoVirtual) {
+        for (int i = 0; i < directorios.size(); i++) {
+            if(directorios.get(i).nombre.equals(nombreDirectorio)){
+                Directorio directorioAgregar = getDirectorio(nuevaRuta,raiz);
+                if (directorioAgregar != null){
+                    if(directorioAgregar.revisarNombreDisponibleDir(nuevoNombre)){
+                        directorios.get(i).nombre = nuevoNombre;
+                        directorioAgregar.directorios.add(directorios.get(i));
+                        directorios.remove(i);
+                        return;     
+                    }else{
+                        System.out.println("Ya existe un directorio con ese nombre.");
+                        return;
+                    }
+                              
+                }else{
+                    System.out.println("La ruta especificada no se encontro.");
+                    return;
+                }
+            }
+        }
+        System.out.println("El directorio no fue encontrado.");
     }
     
     private Directorio getDirectorio(String nuevaRuta, Directorio raiz){
@@ -242,6 +275,14 @@ public class Directorio extends ArchivoMaestro {
             }
         }
         return null;
+    }
+
+    String getRuta() {
+        if(directorioAnterior == null){
+            return nombre;
+        }else{
+            return directorioAnterior.getRuta() + "/"+nombre;
+        }
     }
     
 }
