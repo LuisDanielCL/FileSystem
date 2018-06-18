@@ -182,8 +182,6 @@ public class FileSystem {
             System.out.println("Debe ingresar un nombre para el archivo");
             return;
         }
-        
-        System.out.print("Ingrese el nombre del archivo a modificar: ");
         String nuevoContenido = entrada.nextLine();
         
         myFileSystem.cambiarContenidoArchivo(nombreArchivo, discoVirtual, nuevoContenido);
