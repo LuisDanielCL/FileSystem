@@ -19,10 +19,10 @@ public class FileSystem {
     static SystemaDeArchivo myFileSystem;
     
     boolean discoCreado = false;
-    Scanner entrada = new Scanner(System.in);
     
     
     public void pedirDatosDisco() {
+        Scanner entrada = new Scanner(System.in);
         if (discoCreado == false)
         {
             System.out.print("Digite el nombre del Disco Virtual: ");
@@ -71,6 +71,7 @@ public class FileSystem {
     
     public void pedirDatosCrearArchivo(DiscoVirtual discoVirtual)
     {
+        Scanner entrada = new Scanner(System.in);
         if (discoCreado == false)
         {
             System.out.println("Disco virtual no creado");
@@ -92,7 +93,7 @@ public class FileSystem {
             return;
         }
         
-        System.out.println("Ingrese la extension del archivo");
+        System.out.print("Ingrese la extension del archivo: ");
         String extension = entrada.nextLine();
         if (extension.equals("TXT") || extension.equals("txt"))
         {
@@ -106,6 +107,7 @@ public class FileSystem {
     
     public void pedirDatosCrearDirectorio()
     {
+        Scanner entrada = new Scanner(System.in);
         if (discoCreado == false)
         {
             System.out.println("Disco virtual no creado");
@@ -125,6 +127,7 @@ public class FileSystem {
     
     public void pedirDatosCambiarDirectorio()
     {
+        Scanner entrada = new Scanner(System.in);
         if (discoCreado == false)
         {
             System.out.println("Disco virtual no creado");
@@ -165,6 +168,7 @@ public class FileSystem {
     
     public void modificarContenidoArchivo()
     {
+        Scanner entrada = new Scanner(System.in);
         if (discoCreado == false)
         {
             System.out.println("Disco virtual no creado");
@@ -189,6 +193,7 @@ public class FileSystem {
     
     public void verPropiedadesDeArchivo(DiscoVirtual discoVirtual)
     {
+        Scanner entrada = new Scanner(System.in);
         if (discoCreado == false)
         {
             System.out.println("Disco virtual no creado");
@@ -210,6 +215,7 @@ public class FileSystem {
     
     public void verContenidoArchivo(DiscoVirtual discoVirtual)
     {
+        Scanner entrada = new Scanner(System.in);
         if (discoCreado == false)
         {
             System.out.println("Disco virtual no creado");
@@ -232,6 +238,7 @@ public class FileSystem {
     
     public void copiarArchivo()
     {
+        Scanner entrada = new Scanner(System.in);
         if (discoCreado == false)
         {
             System.out.println("Disco virtual no creado");
@@ -253,6 +260,7 @@ public class FileSystem {
     
     public void moverArchivo()
     {
+        Scanner entrada = new Scanner(System.in);
         if (discoCreado == false)
         {
             System.out.println("Disco virtual no creado");
@@ -281,6 +289,7 @@ public class FileSystem {
     
     public void removerArchivo()
     {
+        Scanner entrada = new Scanner(System.in);
         if (discoCreado == false)
         {
             System.out.println("Disco virtual no creado");
@@ -293,10 +302,13 @@ public class FileSystem {
         {
             System.out.println("Debe ingresar un nombre");
         }else{
-            String[] nombreList = nombre.split(".", 2);
+            String[] nombreList = nombre.split("\\.", 2);
             if(nombreList.length>1){
-                if(nombreList[1].toUpperCase().equals("txt"));
-                myFileSystem.eliminarArchivo(nombre);
+                if(nombreList[1].toUpperCase().equals("TXT")){
+                    myFileSystem.eliminarArchivo(nombreList[0],discoVirtual);
+                }
+            }else{
+                myFileSystem.eliminarDirectorio(nombre,discoVirtual);
             }
             
 
