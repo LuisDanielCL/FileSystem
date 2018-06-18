@@ -74,6 +74,7 @@ public class Directorio extends ArchivoMaestro {
         }
         Directorio nuevoDir = new Directorio(nombreDirectorio,this);
         directorios.add(nuevoDir);
+        System.out.println("directorio " + nombreDirectorio + " creado con exito");
         
         return true;
     }
@@ -182,7 +183,8 @@ public class Directorio extends ArchivoMaestro {
         System.out.print("El archivo no fue encontrado.");
         return false;
     }
-     public boolean cambiarContenidoArchivo(String nombreArchivo, DiscoVirtual disco, String nuevoContenido){
+
+    public boolean cambiarContenidoArchivo(String nombreArchivo, DiscoVirtual disco, String nuevoContenido){
         for (int i = 0; i < archivos.size(); i++) {
             if(archivos.get(i).nombre.equals(nombreArchivo)){
                 
@@ -225,6 +227,67 @@ public class Directorio extends ArchivoMaestro {
         }
         System.out.print("El archivo no fue encontrado.");
         return false;
+    }
+    
+    
+    void moverArchivo(String nombreArchivo, String nuevaRuta, String nuevoNombre,
+            Directorio raiz,DiscoVirtual discoVirtual) {
+        for (int i = 0; i < archivos.size(); i++) {
+            if(archivos.get(i).nombre.equals(nombreArchivo)){
+                Directorio directorioAgregar = getDirectorio(nuevaRuta,raiz);
+                if (directorioAgregar != null){
+                    if(directorioAgregar.revisarNombreDisponible(nuevoNombre)){
+                        archivos.get(i).nombre = nuevoNombre;
+                        directorioAgregar.archivos.add(archivos.get(i));
+                        archivos.remove(i);
+                        return;     
+                    }else{
+                        System.out.println("Ya existe un archivo con ese nombre.");
+                        return;
+                    }
+                              
+                }else{
+                    System.out.println("La ruta especificada no se encontro.");
+                }
+            }
+        }
+        System.out.println("El archivo no fue encontrado.");
+    }
+    
+    private boolean revisarNombreDisponible(String nuevoNombre){
+        for(int i = 0; i< archivos.size();i++){
+            if(archivos.get(i).nombre.equals(nuevoNombre)){
+                return false;
+            }
+        }
+        return true;
+    }
+    
+    private Directorio getDirectorio(String nuevaRuta, Directorio raiz){
+        String[] divDir = nuevaRuta.split("/", 2);
+        if(divDir[0].equals(raiz.nombre)){
+            if(divDir.length>1){
+                return getDirectorioFix(divDir[1],raiz);
+            }else{
+                return raiz;
+            }
+        }
+        return null;
+    }
+
+    private Directorio getDirectorioFix(String nuevaRuta, Directorio posActual) {
+        String[] divDir = nuevaRuta.split("/", 2);
+        for(int i = 0; i<posActual.directorios.size();i++){
+            if(divDir[0].equals(posActual.directorios.get(i).nombre)){
+                if(divDir.length>1){
+                    return getDirectorioFix(divDir[1],posActual.directorios.get(i));
+                }else{
+                    return posActual.directorios.get(i);
+                }
+            }
+        }
+        return null;
+
     }
     
 }

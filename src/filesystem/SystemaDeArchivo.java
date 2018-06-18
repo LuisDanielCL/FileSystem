@@ -18,7 +18,7 @@ public class SystemaDeArchivo {
         this.current = nombreDisco;
         this.root = nombreDisco;
         this.rutaA = nombreDisco;
-        Directorio volumen = new Directorio(nombreDisco);
+        volumen = new Directorio(nombreDisco);
         dirActual = volumen;
     }
     
@@ -100,5 +100,17 @@ public class SystemaDeArchivo {
         dirActual.contenidoArchivo(nombreArchivo, disco);
 
 
+    }
+
+    void moverDirectorio(String nombreArchivo, String nuevaRuta, String nuevoNombre, DiscoVirtual discoVirtual) {
+        
+
+    }
+    
+
+
+    void moverArchivo(String nombreArchivo, String nuevaRuta, String nuevoNombre, DiscoVirtual discoVirtual) {
+                dirActual.moverArchivo(nombreArchivo, nuevaRuta, nuevoNombre, 
+                volumen, discoVirtual);
     }
 }

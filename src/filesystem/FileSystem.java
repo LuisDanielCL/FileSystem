@@ -274,15 +274,28 @@ public class FileSystem {
             return;
         }
         
-        System.out.print("Ingrese la ruta del archivo o directorio a ser movido: ");
-        String rutaInicio = entrada.nextLine();
-        System.out.print("Ingrese la ruta donde se desea mover: ");
-        String rutaFin = entrada.nextLine();
+        System.out.print("Ingrese la ruta donde mover el directorio:");
+        String nuevaRuta = entrada.nextLine();
+        System.out.print("Ingrese el nombre del directorio/archivo: ");
+        String nombreArchivo = entrada.nextLine();
+        System.out.print("Ingrese el nuevo nombre del directorio: ");
+        String nuevoNombre = entrada.nextLine();
         
-        if (rutaInicio.length() == 0 || rutaFin.length() == 0)
+        if (nombreArchivo.length() == 0 || nuevaRuta.length() == 0 ||
+                nuevoNombre.length() == 0)
         {
             System.out.println("Debe ingresar los datos solicitados");
         }else{
+            String[] nombreList = nombreArchivo.split("\\.", 2);
+            if(nombreList.length>1){
+                if(nombreList[1].toUpperCase().equals("TXT")){
+                    myFileSystem.moverArchivo(nombreList[0],nuevaRuta,
+                            nuevoNombre,discoVirtual);
+                }
+            }else{
+                myFileSystem.moverDirectorio(nombreArchivo,nuevaRuta,
+                            nuevoNombre,discoVirtual);
+            }
             /*if (myFileSystem.esArchivo(nombre)
             {
                 myFileSystem.moverArchivo(rutaInicio, rutaFin);
@@ -330,11 +343,6 @@ public class FileSystem {
             return;
         }
         
-        //myFileSystem.mostrarEstructuraVolumen();
-    }
-    
-    
-    private void mostrarEstructuraActual() {
         myFileSystem.mostrarEstructuraActual();
     }
     
@@ -403,10 +411,6 @@ public class FileSystem {
                 
                 case "TREE":
                     mostrarEstructuraVolumen();
-                    break;
-                    
-                case "TREET":
-                    mostrarEstructuraActual();
                     break;
                     
                 case "BACK":
